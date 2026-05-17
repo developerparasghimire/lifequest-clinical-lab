@@ -30,7 +30,7 @@ export default function AdminSidebar() {
       <div className="p-6 border-b border-slate-700">
         <Link href="/questlife-admin" className="flex items-center gap-2">
           <Image
-            src="/logo.jpeg"
+            src="/logo.png"
             alt="Life Quest Clinical Lab"
             width={130}
             height={76}
