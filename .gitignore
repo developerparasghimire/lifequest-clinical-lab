@@ -1,0 +1,43 @@
+# dependencies
+node_modules
+.pnp
+.pnp.js
+
+# next.js / build output
+.next
+out
+dist
+build
+.turbo
+*.tsbuildinfo
+next-env.d.ts
+
+# testing
+coverage
+
+# logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+*.log
+
+# env files
+.env
+.env.local
+.env*.local
+
+# misc
+.DS_Store
+*.pem
+
+# vercel
+.vercel
+
+# prisma local sqlite (legacy)
+prisma/dev.db
+prisma/dev.db-journal
+
+# user uploads (served from public/uploads in dev)
+public/uploads
+

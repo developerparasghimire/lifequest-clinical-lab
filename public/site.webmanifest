@@ -1,0 +1,14 @@
+{
+  "name": "Life Quest Clinical Lab",
+  "short_name": "Life Quest Lab",
+  "description": "Trusted medical diagnostic laboratory in Nepal — 529+ tests, three branches, home sample collection.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#134CF7",
+  "lang": "en-NP",
+  "icons": [
+    { "src": "/logo.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable" },
+    { "src": "/logo.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+  ]
+}
