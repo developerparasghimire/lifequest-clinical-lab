@@ -98,6 +98,7 @@ export default function Header() {
               width={160}
               height={93}
               priority
+              loading="eager"
               className="h-14 w-auto object-contain transition-transform group-hover:scale-105"
               style={{ filter: "drop-shadow(0 1px 2px rgba(0,0,0,0.18))" }}
             />
