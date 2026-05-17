@@ -76,7 +76,7 @@ export default async function BlogPostPage({ params }: Props) {
     publisher: {
       "@type": "Organization",
       name: "Life Quest Clinical Lab",
-      logo: { "@type": "ImageObject", url: `${SITE_URL}/logo.jpeg` },
+      logo: { "@type": "ImageObject", url: `${SITE_URL}/logo.png` },
     },
     mainEntityOfPage: {
       "@type": "WebPage",

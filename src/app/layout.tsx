@@ -55,7 +55,7 @@ export const metadata: Metadata = {
     languages: { "en-NP": "/", en: "/" },
   },
   icons: {
-    icon: [{ url: "/logo.jpeg", type: "image/jpeg" }],
+    icon: [{ url: "/logo.jpeg", type: "image/png" }],
     shortcut: "/logo.jpeg",
     apple: "/logo.jpeg",
   },
