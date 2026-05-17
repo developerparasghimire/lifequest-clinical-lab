@@ -73,7 +73,7 @@ DATABASE_URL="postgres://...neon-pooled..." npm run db:seed
    | `DATABASE_URL`           | Neon pooled connection string                               |
    | `AUTH_SECRET`            | `openssl rand -base64 32`                                   |
    | `NEXT_PUBLIC_SITE_URL`   | `https://your-domain.vercel.app`                            |
-   | `NEXT_PUBLIC_WHATSAPP_NUMBER` | `9779868591121`                                        |
+   | `NEXT_PUBLIC_WHATSAPP_NUMBER` | `9779802302471`                                        |
    | `SMTP_HOST` / `SMTP_PORT` / `SMTP_USER` / `SMTP_PASS` / `SMTP_FROM` / `ADMIN_EMAIL` | optional — for booking & contact emails |
 
 5. Click **Deploy**.

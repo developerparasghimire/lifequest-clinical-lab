@@ -12,7 +12,7 @@ import { AnimatePresence, motion } from "framer-motion";
 export default function FloatingActions() {
   const [showTop, setShowTop] = useState(false);
 
-  const phone = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "9779868591121";
+  const phone = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "9779802302471";
   const message = encodeURIComponent(
     "Hello, I'd like to book an appointment at Life Quest Clinical Lab."
   );
