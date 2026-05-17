@@ -113,7 +113,7 @@ export default async function ContactPage() {
               </h2>
             </Reveal>
             <Reveal stagger staggerGap={0.1} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-7">
-              {branches.map((b, i) => (
+              {branches.map((b) => (
                 <RevealItem key={b.id}>
                 <div
                   className="overflow-hidden card-premium h-full flex flex-col"
@@ -183,7 +183,7 @@ export default async function ContactPage() {
                       </div>
                     )}
 
-                    {b.mapUrl && i !== 1 && (
+                    {b.mapUrl && (
                       <a
                         href={b.mapUrl}
                         target="_blank"

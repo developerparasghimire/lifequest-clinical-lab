@@ -116,7 +116,7 @@ async function main() {
   await prisma.branch.deleteMany();
   await prisma.branch.createMany({
     data: [
-        { name: "Life Quest Kathmandu Branch", address: "Maharajgunj-03, Panipokhari, Kathmandu", phone: "+977 9802302472", email: "lifequestclinicallab@gmail.com", hours: "Sun–Fri 7:00 AM – 7:00 PM · Sat 8:00 AM – 4:00 PM", order: 1 },
+        { name: "Life Quest Kathmandu Branch", address: "Maharajgunj-03, Panipokhari, Kathmandu", phone: "+977 9802302472", email: "lifequestclinicallab@gmail.com", hours: "Sun–Fri 7:00 AM – 7:00 PM · Sat 8:00 AM – 4:00 PM", mapUrl: "https://www.google.com/maps/place/Life+Quest+Clinical+Lab,+Panipokhari,+Maharajgunj-03,+Kathmandu/@27.7367,85.3315,17z", order: 1 },
         { name: "Life Quest Clinical Lab, Birtamod", address: "Shree Krishna Complex, Birtamod-05, Jhapa", phone: "977023591222", email: "lifequestbtm@gmail.com", hours: "Sun–Fri 7:00 AM – 7:00 PM · Sat 8:00 AM – 4:00 PM", mapUrl: "https://www.google.com/maps/dir//Life+Quest+Clinical+Lab+Biratmod+Pvt.+Ltd.,+Birtamod-05,+Birtamod+57204/@26.6231679,87.9881796,13z/data=!4m8!4m7!1m0!1m5!1m1!1s0x39e5bb585a444019:0xb3c5b18fc5fa12a1!2m2!1d87.9977908!2d26.644112?entry=ttu&g_ep=EgoyMDI2MDUxMy4wIKXMDSoASAFQAw%3D%3D", order: 2 },
         { name: "Life Quest Clinical Lab, Gaighat",  address: "Triyuga-10, Setopul, Gaighat", phone: "+977 9704583951", email: "lifequestgaighat@gmail.com", hours: "Sun–Fri 7:00 AM – 7:00 PM · Sat 8:00 AM – 4:00 PM", order: 3 },
     ],
