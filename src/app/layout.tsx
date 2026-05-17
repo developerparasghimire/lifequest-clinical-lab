@@ -6,7 +6,7 @@ const SITE_URL =
 const SITE_NAME = "Life Quest Clinical Lab";
 const SITE_DESCRIPTION =
   "Life Quest Clinical Lab is a trusted medical laboratory in Nepal offering 529+ diagnostic tests across biochemistry, hematology, hormones, immunology, microbiology, molecular diagnostics and histopathology. Three branches in Kathmandu, Birtamod and Gaighat with home sample collection and same-day reporting.";
-const OG_IMAGE = "/logo.png";
+const OG_IMAGE = "/logo.jpeg";
 
 export const viewport: Viewport = {
   themeColor: "#134CF7",
@@ -55,9 +55,9 @@ export const metadata: Metadata = {
     languages: { "en-NP": "/", en: "/" },
   },
   icons: {
-    icon: [{ url: "/logo.png", type: "image/png" }],
-    shortcut: "/logo.png",
-    apple: "/logo.png",
+    icon: [{ url: "/logo.jpeg", type: "image/jpeg" }],
+    shortcut: "/logo.jpeg",
+    apple: "/logo.jpeg",
   },
   manifest: "/site.webmanifest",
   robots: {
@@ -107,8 +107,8 @@ const organizationLd = {
   alternateName: "Life Quest Lab",
   legalName: "Life Quest Clinical Lab Pvt. Ltd.",
   url: SITE_URL,
-  logo: `${SITE_URL}/logo.png`,
-  image: `${SITE_URL}/logo.png`,
+  logo: `${SITE_URL}/logo.jpeg`,
+  image: `${SITE_URL}/logo.jpeg`,
   description: SITE_DESCRIPTION,
   medicalSpecialty: ["Pathology", "ClinicalLaboratoryScience", "Diagnostic"],
   priceRange: "$$",

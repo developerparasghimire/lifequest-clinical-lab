@@ -93,7 +93,7 @@ export default function Header() {
           {/* Brand */}
           <Link href="/" className="flex items-center shrink-0 group" aria-label="Life Quest Clinical Lab — Home">
             <Image
-              src="/logo.png"
+              src="/logo.jpeg"
               alt="Life Quest Clinical Lab"
               width={160}
               height={93}

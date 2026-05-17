@@ -71,7 +71,7 @@ export default async function Footer() {
           <div className="lg:col-span-1">
             <Link href="/" className="inline-flex items-center mb-6" aria-label="Life Quest Clinical Lab — Home">
               <Image
-                src="/logo.png"
+                src="/logo.jpeg"
                 alt="Life Quest Clinical Lab"
                 width={130}
                 height={76}

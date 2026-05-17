@@ -46,7 +46,7 @@ export default function AdminLoginPage() {
         className="hidden lg:flex flex-col justify-between w-[45%] p-12"
         style={{ background: "linear-gradient(135deg, #0f2d6b 0%, #1d4ed8 100%)" }}
       >
-        <Image src="/logo.png" alt="Life Quest" width={160} height={60} className="brightness-0 invert" />
+        <Image src="/logo.jpeg" alt="Life Quest" width={160} height={60} className="brightness-0 invert" />
         <div>
           <p className="text-white/60 text-sm uppercase tracking-widest mb-4">Admin Portal</p>
           <h2 className="text-white text-4xl font-bold leading-tight mb-4">
@@ -65,7 +65,7 @@ export default function AdminLoginPage() {
         <div className="bg-white rounded-3xl shadow-xl p-8 w-full max-w-md">
           {/* Logo — mobile only */}
           <div className="flex justify-center mb-6 lg:hidden">
-            <Image src="/logo.png" alt="Life Quest" width={140} height={52} />
+            <Image src="/logo.jpeg" alt="Life Quest" width={140} height={52} />
           </div>
 
           <h1 className="text-2xl font-bold text-slate-900 mb-1">Sign in</h1>
