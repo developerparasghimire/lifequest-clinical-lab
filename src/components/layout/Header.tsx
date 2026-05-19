@@ -6,10 +6,20 @@ import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 
-const navLinks = [
+type NavChild = { href: string; label: string; desc?: string };
+type NavLink = { href: string; label: string; external?: boolean; children?: NavChild[] };
+
+const navLinks: NavLink[] = [
   { href: "/", label: "Home" },
   { href: "/about", label: "About" },
-  { href: "/services", label: "Services" },
+  {
+    href: "/services",
+    label: "Services",
+    children: [
+      { href: "/services/lab-tests", label: "Lab Tests"},
+      { href: "/services/packages", label: "Packages"},
+    ],
+  },
   { href: "/appointments", label: "Appointments" },
   { href: "/blog", label: "Blog" },
   { href: "/contact", label: "Contact" },
@@ -108,13 +118,15 @@ export default function Header() {
           <ul className="hidden items-center gap-1 lg:flex">
             {navLinks.map((l) => {
               const active = !l.external && (l.href === "/" ? pathname === "/" : pathname.startsWith(l.href));
+              const hasChildren = !!l.children?.length;
               return (
-                <li key={l.href}>
+                <li key={l.href} className={hasChildren ? "relative group/menu" : ""}>
                   <Link
                     href={l.href}
                     aria-current={active ? "page" : undefined}
+                    aria-haspopup={hasChildren ? "menu" : undefined}
                     {...(l.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-                    className="group relative px-4 py-2 text-[14px] font-medium rounded transition-colors hover:text-[#134CF7]"
+                    className="group relative px-4 py-2 text-[14px] font-medium rounded transition-colors hover:text-[#134CF7] inline-flex items-center gap-1"
                     style={{ color: active ? "#134CF7" : "#444444" }}
                   >
                     <span className="relative">
@@ -127,7 +139,50 @@ export default function Header() {
                         }}
                       />
                     </span>
+                    {hasChildren && (
+                      <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="transition-transform duration-200 group-hover/menu:rotate-180">
+                        <polyline points="6 9 12 15 18 9"/>
+                      </svg>
+                    )}
                   </Link>
+
+                  {hasChildren && (
+                    <div
+                      className="invisible opacity-0 translate-y-1 group-hover/menu:visible group-hover/menu:opacity-100 group-hover/menu:translate-y-0 focus-within:visible focus-within:opacity-100 focus-within:translate-y-0 absolute left-0 top-full pt-3 transition-all duration-200 z-50"
+                    >
+                      <div
+                        role="menu"
+                        className="w-[300px] rounded-2xl border bg-white p-2 shadow-2xl"
+                        style={{ borderColor: "#EEF1F5" }}
+                      >
+                        {l.children!.map((c) => {
+                          const childActive = pathname.startsWith(c.href);
+                          return (
+                            <Link
+                              key={c.href}
+                              href={c.href}
+                              role="menuitem"
+                              className="flex items-start gap-3 rounded-xl px-3 py-3 transition-colors hover:bg-[#F0F4FF]"
+                              style={{ color: childActive ? "#134CF7" : "#040B2F" }}
+                            >
+                              <span
+                                className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg text-base"
+                                style={{ background: "#EEF3FF", color: "#134CF7" }}
+                              >
+                                {c.label === "Packages" ? "📦" : "🔬"}
+                              </span>
+                              <span className="flex flex-col">
+                                <span className="text-sm font-semibold">{c.label}</span>
+                                {c.desc && (
+                                  <span className="text-xs text-slate-500 leading-snug">{c.desc}</span>
+                                )}
+                              </span>
+                            </Link>
+                          );
+                        })}
+                      </div>
+                    </div>
+                  )}
                 </li>
               );
             })}
@@ -236,6 +291,25 @@ export default function Header() {
                           {l.label}
                           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polyline points="9 18 15 12 9 6"/></svg>
                         </Link>
+                        {l.children?.length ? (
+                          <ul className="ml-3 mb-1 border-l" style={{ borderColor: "#EEF1F5" }}>
+                            {l.children.map((c) => {
+                              const cActive = pathname.startsWith(c.href);
+                              return (
+                                <li key={c.href}>
+                                  <Link
+                                    href={c.href}
+                                    className="flex items-center justify-between rounded-lg pl-4 pr-3 py-2.5 text-[14px] transition-colors"
+                                    style={{ color: cActive ? "#134CF7" : "#666", background: cActive ? "#F0F4FF" : "transparent" }}
+                                  >
+                                    {c.label}
+                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polyline points="9 18 15 12 9 6"/></svg>
+                                  </Link>
+                                </li>
+                              );
+                            })}
+                          </ul>
+                        ) : null}
                       </motion.li>
                     );
                   })}

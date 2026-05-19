@@ -1,38 +1,30 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import ServicesBrowser from "@/components/services/ServicesBrowser";
 import Reveal, { RevealItem } from "@/components/ui/Reveal";
 
 export const metadata: Metadata = {
-  title: "Services — Lab Tests & Packages",
-  description: "Explore Life Quest Clinical Lab services — browse individual lab tests or pick from curated health checkup packages.",
-  alternates: { canonical: "/services" },
+  title: "All Lab Tests",
+  description: "Browse all diagnostic tests offered by Life Quest Clinical Lab — biochemistry, hematology, hormones, molecular diagnostics, histopathology and more. Search any test by name.",
+  keywords: [
+    "lab tests Nepal",
+    "medical tests Kathmandu",
+    "blood test list Nepal",
+    "biochemistry tests",
+    "hematology tests",
+    "hormone tests Nepal",
+  ],
+  alternates: { canonical: "/services/lab-tests" },
   openGraph: {
-    title: "Services · Life Quest Clinical Lab",
-    description: "Browse individual lab tests or curated health checkup packages.",
-    url: "/services",
+    title: "All Lab Tests · Life Quest Clinical Lab",
+    description: "Browse all diagnostic tests with pricing — search by name, method or sample type.",
+    url: "/services/lab-tests",
     type: "website",
   },
 };
 
-const hubLinks = [
-  {
-    href: "/services/lab-tests",
-    title: "Lab Tests",
-    desc: "Search 500+ diagnostic tests by name, method or sample type. View price, turnaround and book online.",
-    icon: "🔬",
-    cta: "Browse all tests",
-  },
-  {
-    href: "/services/packages",
-    title: "Health Packages",
-    desc: "Curated bundles of essential tests at discounted prices — full body, diabetes, thyroid, cardiac and more.",
-    icon: "📦",
-    cta: "View packages",
-  },
-];
-
-export default function ServicesHubPage() {
+export default function LabTestsPage() {
   return (
     <>
       {/* Hero Banner */}
@@ -40,7 +32,7 @@ export default function ServicesHubPage() {
         <div className="absolute inset-0">
           <Image
             src="/julia-koblitz-RlOAwXt2fEA-unsplash.jpg"
-            alt="Our services"
+            alt="Lab test services"
             fill
             priority
             sizes="100vw"
@@ -65,55 +57,27 @@ export default function ServicesHubPage() {
             Life Quest Clinical Lab
           </div>
           <h1 className="font-bold leading-[1.07] tracking-tight mb-5 h-display" style={{ fontSize: "clamp(2.2rem, 5vw, 4rem)", color: "#fff" }}>
-            Our Services
+            All Our Lab Tests
           </h1>
           <p className="max-w-2xl text-lg leading-relaxed mb-8" style={{ color: "rgba(255,255,255,0.75)" }}>
-            Choose how you&apos;d like to explore — individual lab tests or curated health checkup packages.
+            Search by test name, method (CLIA, PCR, ELISA…) or sample type.
+            Every entry shows price, sample requirement, and turnaround time.
           </p>
           <nav className="flex items-center gap-2 text-sm" style={{ color: "rgba(255,255,255,0.5)" }}>
             <Link href="/" className="hover:text-white transition-colors">Home</Link>
             <span>/</span>
-            <span style={{ color: "#fff" }}>Services</span>
+            <Link href="/services" className="hover:text-white transition-colors">Services</Link>
+            <span>/</span>
+            <span style={{ color: "#fff" }}>Lab Tests</span>
           </nav>
           </Reveal>
         </div>
       </section>
 
-      {/* Hub cards */}
-      <section className="py-20 bg-white">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <Reveal stagger staggerGap={0.1} className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {hubLinks.map((l) => (
-              <RevealItem key={l.href}>
-                <Link
-                  href={l.href}
-                  className="group block h-full bg-white rounded-3xl border p-8 sm:p-10 card-lift transition-all duration-300"
-                  style={{ borderColor: "#DCDCDC" }}
-                >
-                  <div
-                    className="w-16 h-16 rounded-2xl flex items-center justify-center text-3xl mb-6 transition-transform duration-300 group-hover:scale-110"
-                    style={{ background: "linear-gradient(135deg,#134CF7,#00C6FF)", color: "#fff" }}
-                  >
-                    <span>{l.icon}</span>
-                  </div>
-                  <h2 className="text-2xl sm:text-3xl font-bold mb-3 h-display" style={{ color: "#040B2F" }}>
-                    {l.title}
-                  </h2>
-                  <p className="text-slate-500 leading-relaxed mb-6">{l.desc}</p>
-                  <span
-                    className="inline-flex items-center gap-2 font-semibold text-sm transition-colors group-hover:gap-3"
-                    style={{ color: "#134CF7" }}
-                  >
-                    {l.cta}
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                      <line x1="5" y1="12" x2="19" y2="12"/>
-                      <polyline points="12 5 19 12 12 19"/>
-                    </svg>
-                  </span>
-                </Link>
-              </RevealItem>
-            ))}
-          </Reveal>
+      {/* Browser */}
+      <section className="py-14 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <ServicesBrowser />
         </div>
       </section>
 
@@ -130,7 +94,7 @@ export default function ServicesHubPage() {
           </Reveal>
           <Reveal stagger staggerGap={0.1} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
-              { step: "01", icon: "📋", title: "Book Online", desc: "Pick a test or package and fill in your details." },
+              { step: "01", icon: "📋", title: "Book Online", desc: "Click Book on any test and fill in your details." },
               { step: "02", icon: "🩸", title: "Sample Collection", desc: "Visit a branch or opt for home collection." },
               { step: "03", icon: "🔬", title: "Lab Processing", desc: "Analysed by qualified staff on calibrated equipment." },
               { step: "04", icon: "📱", title: "Get Results", desc: "Signed report delivered to your email same day." },

@@ -8,7 +8,8 @@ import { signOut } from "next-auth/react";
 const navItems = [
   { href: "/questlife-admin", label: "Dashboard", icon: "📊", exact: true },
   { href: "/questlife-admin/appointments", label: "Appointments", icon: "📅", exact: false },
-  { href: "/questlife-admin/services", label: "Services", icon: "🔬", exact: false },
+  { href: "/questlife-admin/services", label: "Lab Tests", icon: "🔬", exact: false },
+  { href: "/questlife-admin/packages", label: "Packages", icon: "📦", exact: false },
   { href: "/questlife-admin/blog", label: "Blog Posts", icon: "📝", exact: false },
   { href: "/questlife-admin/banners", label: "Banners", icon: "🖼️", exact: false },
   { href: "/questlife-admin/testimonials", label: "Testimonials", icon: "⭐", exact: false },

@@ -86,10 +86,10 @@ function AppointmentsInner() {
             Life Quest Clinical Lab
           </div>
           <h1 className="font-bold leading-[1.07] tracking-tight mb-5 h-display" style={{ fontSize: "clamp(2.2rem, 5vw, 4rem)", color: "#fff" }}>
-            Book Your Test in Under 2 Minutes
+            Book Your Test or Package in Under 2 Minutes
           </h1>
           <p className="max-w-2xl text-lg leading-relaxed mb-8" style={{ color: "rgba(255,255,255,0.75)" }}>
-            Pick any of our {SERVICES.length} tests, choose a date, and our team will
+            Pick any of our {SERVICES.length}+ individual tests or choose a curated health package, select a date, and our team will
             confirm your slot within working hours.
           </p>
           <nav className="flex items-center gap-2 text-sm" style={{ color: "rgba(255,255,255,0.5)" }}>
