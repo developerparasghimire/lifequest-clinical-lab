@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { formatDate } from "@/lib/utils";
 
 const fallbackImages = [
@@ -79,6 +79,9 @@ function BlogCard({ post, i }: { post: Post; i: number }) {
 
 export default function BlogSlider({ posts }: { posts: Post[] }) {
   const [idx, setIdx] = useState(0);
+  const [dragX, setDragX] = useState(0);
+  const [dragging, setDragging] = useState(false);
+  const startXRef = useRef(0);
   const total = posts.length;
 
   function prev() {
@@ -88,11 +91,37 @@ export default function BlogSlider({ posts }: { posts: Post[] }) {
     setIdx((i) => (i + 1) % total);
   }
 
+  function onTouchStart(e: React.TouchEvent) {
+    startXRef.current = e.touches[0].clientX;
+    setDragging(true);
+  }
+  function onTouchMove(e: React.TouchEvent) {
+    if (!dragging) return;
+    setDragX(e.touches[0].clientX - startXRef.current);
+  }
+  function onTouchEnd() {
+    if (Math.abs(dragX) > 50) {
+      if (dragX < 0) next();
+      else prev();
+    }
+    setDragX(0);
+    setDragging(false);
+  }
+
   return (
     <>
       {/* ── Mobile: 1-card slider ── */}
       <div className="md:hidden">
-        <div className="h-full">
+        <div
+          className="h-full overflow-hidden touch-pan-y select-none"
+          onTouchStart={onTouchStart}
+          onTouchMove={onTouchMove}
+          onTouchEnd={onTouchEnd}
+          style={{
+            transform: `translateX(${dragX}px)`,
+            transition: dragging ? "none" : "transform 0.3s ease",
+          }}
+        >
           <BlogCard post={posts[idx]} i={idx} />
         </div>
 

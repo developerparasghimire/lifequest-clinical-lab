@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useRef } from "react";
 
 const FALLBACKS = [
   "/julia-koblitz-RlOAwXt2fEA-unsplash.jpg",
@@ -88,6 +88,9 @@ function ServiceCard({ svc, idx }: { svc: Service; idx: number }) {
 
 export default function ServicesSlider({ services }: { services: Service[] }) {
   const [idx, setIdx] = useState(0);
+  const [dragX, setDragX] = useState(0);
+  const [dragging, setDragging] = useState(false);
+  const startXRef = useRef(0);
   const total = services.length;
 
   function prev() {
@@ -97,11 +100,37 @@ export default function ServicesSlider({ services }: { services: Service[] }) {
     setIdx((i) => (i + 1) % total);
   }
 
+  function onTouchStart(e: React.TouchEvent) {
+    startXRef.current = e.touches[0].clientX;
+    setDragging(true);
+  }
+  function onTouchMove(e: React.TouchEvent) {
+    if (!dragging) return;
+    setDragX(e.touches[0].clientX - startXRef.current);
+  }
+  function onTouchEnd() {
+    if (Math.abs(dragX) > 50) {
+      if (dragX < 0) next();
+      else prev();
+    }
+    setDragX(0);
+    setDragging(false);
+  }
+
   return (
     <>
       {/* ── Mobile: 1-card slider ── */}
       <div className="md:hidden">
-        <div className="h-full">
+        <div
+          className="h-full overflow-hidden touch-pan-y select-none"
+          onTouchStart={onTouchStart}
+          onTouchMove={onTouchMove}
+          onTouchEnd={onTouchEnd}
+          style={{
+            transform: `translateX(${dragX}px)`,
+            transition: dragging ? "none" : "transform 0.3s ease",
+          }}
+        >
           <ServiceCard svc={services[idx]} idx={idx} />
         </div>
 
