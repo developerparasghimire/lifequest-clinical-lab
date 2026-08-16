@@ -465,7 +465,7 @@ export default async function WhoWeArePage() {
           <Reveal className="mb-12">
             <p className="text-xs font-bold uppercase tracking-widest mb-3" style={{ color: "#00B67A" }}>Why Life Quest</p>
             <h2 className="text-3xl sm:text-4xl font-bold h-display" style={{ color: "#040B2F" }}>
-              Your Trusted Partner for Laboratory Testing
+              Why Choose Life Quest for Laboratory Testing
             </h2>
           </Reveal>
           <Reveal stagger staggerGap={0.08} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">

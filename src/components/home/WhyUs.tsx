@@ -48,7 +48,7 @@ export default function WhyUs() {
             className="text-3xl sm:text-4xl font-bold h-display"
             style={{ color: "#040B2F" }}
           >
-            Your Trusted Partner in Quality Diagnostics
+            Your Partner in Quality Diagnostics
           </h2>
         </Reveal>
 

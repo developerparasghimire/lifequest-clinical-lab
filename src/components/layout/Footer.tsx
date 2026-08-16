@@ -26,7 +26,7 @@ export default async function Footer() {
   const settings = await getSettings();
 
   const siteName  = settings["site.name"]      || "Life Quest Clinical Lab";
-  const tagline   = settings["footer.tagline"] || "Trusted clinical diagnostics across Nepal — accurate results, every time.";
+  const tagline   = settings["footer.tagline"] || "Precision diagnostics across Nepal — accurate results, every time.";
   const copyright = settings["footer.copyright"] || `© ${new Date().getFullYear()} ${siteName}. All rights reserved.`;
   const email     = settings["contact.email"]  || "";
   const hours     = settings["contact.hours"]  || "";

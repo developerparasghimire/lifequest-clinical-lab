@@ -30,7 +30,7 @@ export default function HomePage() {
       {/* 2. Home Collection — "We Bring Tests Home" */}
       <HomeCollection />
 
-      {/* 3. About — "Your Trusted Partner in Quality Diagnostics" */}
+      {/* 3. About */}
       <WhyUs />
 
       {/* 4. Stats strip */}

@@ -44,7 +44,7 @@ export default function AdminLoginPage() {
             Life Quest<br />Clinical Lab
           </h2>
           <p className="text-white/70 text-base leading-relaxed">
-            Trusted diagnostics across Nepal —<br />
+            Precision diagnostics across Nepal —<br />
             accurate results, every time.
           </p>
         </div>
