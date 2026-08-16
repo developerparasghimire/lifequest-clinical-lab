@@ -47,7 +47,7 @@ export default function Hero() {
             className="font-black leading-tight text-white mb-4"
             style={{ fontSize: "clamp(2.6rem, 5.5vw, 4.2rem)", letterSpacing: "-0.02em" }}
           >
-            Quality<br />Comes First.
+            Quality<br />Comes First
           </h1>
 
           <p className="text-base leading-relaxed mb-10 max-w-lg" style={{ color: "rgba(255,255,255,0.70)" }}>
