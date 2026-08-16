@@ -10,7 +10,7 @@ import FAQ from "@/components/ui/FAQ";
 export const metadata: Metadata = {
   title: "Life Quest Clinical Lab",
   description:
-    "Life Quest Clinical Lab — Nepal's trusted medical laboratory offering 529+ diagnostic tests, home sample collection, same-day reporting and three branches across Kathmandu, Birtamod and Gaighat.",
+    "Life Quest Clinical Lab — 529+ diagnostic tests, home sample collection, same-day reporting and three branches across Kathmandu, Birtamod and Gaighat.",
   alternates: { canonical: "/" },
   openGraph: {
     title: "Life Quest Clinical Lab — Life Quest Clinical Lab",
