@@ -14,6 +14,7 @@ interface BlogForm {
   metaTitle: string;
   metaDescription: string;
   published: boolean;
+  latest: boolean;
 }
 
 const empty: BlogForm = {
@@ -24,6 +25,7 @@ const empty: BlogForm = {
   metaTitle: "",
   metaDescription: "",
   published: false,
+  latest: false,
 };
 
 export default function EditBlogPostPage() {
@@ -48,6 +50,7 @@ export default function EditBlogPostPage() {
           metaTitle: p.metaTitle || "",
           metaDescription: p.metaDescription || "",
           published: p.published,
+          latest: p.latest ?? false,
         });
       } else {
         setError("Post not found.");
@@ -193,19 +196,34 @@ export default function EditBlogPostPage() {
 
         {/* Publish / Actions */}
         <div className="flex items-center justify-between bg-white rounded-2xl border border-slate-200 shadow-sm p-5">
-          <label className="flex items-center gap-3 cursor-pointer">
-            <input
-              type="checkbox"
-              name="published"
-              checked={form.published}
-              onChange={handleChange}
-              className="w-5 h-5 accent-blue-600"
-            />
-            <div>
-              <p className="font-medium text-slate-900">Published</p>
-              <p className="text-xs text-slate-400">Uncheck to revert to draft</p>
-            </div>
-          </label>
+          <div className="flex items-center gap-6">
+            <label className="flex items-center gap-3 cursor-pointer">
+              <input
+                type="checkbox"
+                name="published"
+                checked={form.published}
+                onChange={handleChange}
+                className="w-5 h-5 accent-green-600"
+              />
+              <div>
+                <p className="font-medium text-slate-900">Published</p>
+                <p className="text-xs text-slate-400">Uncheck to revert to draft</p>
+              </div>
+            </label>
+            <label className="flex items-center gap-3 cursor-pointer">
+              <input
+                type="checkbox"
+                name="latest"
+                checked={form.latest}
+                onChange={handleChange}
+                className="w-5 h-5 accent-green-600"
+              />
+              <div>
+                <p className="font-medium text-slate-900">Show on Home</p>
+                <p className="text-xs text-slate-400">Feature in homepage blog section (max 3)</p>
+              </div>
+            </label>
+          </div>
 
           <div className="flex items-center gap-3">
             <button

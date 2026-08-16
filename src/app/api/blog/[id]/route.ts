@@ -31,7 +31,7 @@ export async function PATCH(req: NextRequest, { params }: RouteParams) {
   const { id } = await params;
   try {
     const body = await req.json();
-    const { title, content, excerpt, image, metaTitle, metaDescription, published } = body;
+    const { title, content, excerpt, image, metaTitle, metaDescription, published, latest } = body;
 
     const updateData: Record<string, unknown> = {};
     if (title) {
@@ -44,6 +44,7 @@ export async function PATCH(req: NextRequest, { params }: RouteParams) {
     if (metaTitle !== undefined) updateData.metaTitle = metaTitle ? String(metaTitle).slice(0, 200) : null;
     if (metaDescription !== undefined) updateData.metaDescription = metaDescription ? String(metaDescription).slice(0, 500) : null;
     if (published !== undefined) updateData.published = Boolean(published);
+    if (latest !== undefined) updateData.latest = Boolean(latest);
 
     const updated = await prisma.blog.update({ where: { id }, data: updateData });
     return NextResponse.json({ success: true, data: updated });

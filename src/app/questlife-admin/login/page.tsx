@@ -3,12 +3,8 @@
 import Image from "next/image";
 import { useState } from "react";
 import { signIn } from "next-auth/react";
-import { useRouter, useSearchParams } from "next/navigation";
 
 export default function AdminLoginPage() {
-  const router = useRouter();
-  const searchParams = useSearchParams();
-  const callbackUrl = searchParams.get("callbackUrl") || "/questlife-admin";
   const [form, setForm] = useState({ email: "", password: "" });
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
@@ -30,12 +26,7 @@ export default function AdminLoginPage() {
     if (result?.error) {
       setError("Invalid email or password.");
     } else {
-      // Only allow internal redirects.
-      const safe = callbackUrl.startsWith("/") && !callbackUrl.startsWith("//")
-        ? callbackUrl
-        : "/questlife-admin";
-      router.push(safe);
-      router.refresh();
+      window.location.href = "https://lifequestclinicallab.com.np/questlife-admin";
     }
   };
 

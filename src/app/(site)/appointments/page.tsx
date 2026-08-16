@@ -1,5 +1,4 @@
 "use client";
-import Image from "next/image";
 import Link from "next/link";
 import { Suspense, useEffect, useMemo, useState } from "react";
 import { useSearchParams } from "next/navigation";
@@ -57,46 +56,41 @@ function AppointmentsInner() {
 
   return (
     <>
-      {/* Hero Banner */}
-      <section className="relative overflow-hidden" style={{ minHeight: "340px" }}>
-        <div className="absolute inset-0">
-          <Image
-            src="/cdc-XLhDvfz0sUM-unsplash.jpg"
-            alt="Book appointment"
-            fill
-            priority
-            sizes="100vw"
-            className="object-cover object-center"
-          />
-          <div
-            className="absolute inset-0"
-            style={{
-              background: [
-                "linear-gradient(274deg, rgba(1,9,10,0.25) 30%, rgba(1,9,10,0.72) 65%, rgba(1,9,10,0.97))",
-                "linear-gradient(1deg, rgba(1,9,10,0.15) 40%, rgba(1,9,10,0.5) 75%, rgba(1,9,10,0.88))",
-              ].join(", "),
-            }}
-          />
-          <div className="absolute -top-32 -left-32 w-[500px] h-[500px] rounded-full pointer-events-none animate-blob-1" style={{ background: "rgba(19,76,247,0.28)", filter: "blur(80px)" }} />
-        </div>
+      {/* Hero Banner — NPL gradient style */}
+      <section
+        className="relative overflow-hidden"
+        style={{
+          minHeight: "380px",
+          background: "linear-gradient(135deg, #040B2F 0%, #071a3e 55%, #0a2060 100%)",
+        }}
+      >
+        {/* Dot pattern */}
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            backgroundImage: "radial-gradient(circle, rgba(255,255,255,0.06) 1px, transparent 1px)",
+            backgroundSize: "28px 28px",
+          }}
+        />
+        {/* Glow blob */}
+        <div
+          className="absolute -top-24 -right-24 w-[500px] h-[500px] rounded-full pointer-events-none"
+          style={{ background: "rgba(0,182,122,0.25)", filter: "blur(80px)" }}
+        />
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-28 sm:py-36">
           <Reveal>
-          <div className="inline-flex items-center gap-2 mb-5 text-xs font-semibold uppercase tracking-[0.15em]" style={{ color: "#134CF7" }}>
-            <span className="inline-block w-6 h-[2px] rounded" style={{ background: "#134CF7" }} />
-            Life Quest Clinical Lab
-          </div>
-          <h1 className="font-bold leading-[1.07] tracking-tight mb-5 h-display" style={{ fontSize: "clamp(2.2rem, 5vw, 4rem)", color: "#fff" }}>
-            Book Your Test or Package in Under 2 Minutes
-          </h1>
-          <p className="max-w-2xl text-lg leading-relaxed mb-8" style={{ color: "rgba(255,255,255,0.75)" }}>
-            Pick any of our {SERVICES.length}+ individual tests or choose a curated health package, select a date, and our team will
-            confirm your slot within working hours.
-          </p>
-          <nav className="flex items-center gap-2 text-sm" style={{ color: "rgba(255,255,255,0.5)" }}>
-            <Link href="/" className="hover:text-white transition-colors">Home</Link>
-            <span>/</span>
-            <span style={{ color: "#fff" }}>Appointments</span>
-          </nav>
+            <h1 className="font-bold leading-[1.07] tracking-tight mb-5 h-display" style={{ fontSize: "clamp(2.2rem, 5vw, 4rem)", color: "#fff" }}>
+              Book Your Test or Package in Under 2 Minutes
+            </h1>
+            <p className="max-w-2xl text-lg leading-relaxed mb-8" style={{ color: "rgba(255,255,255,0.80)" }}>
+              Pick any of our {SERVICES.length}+ individual tests or choose a curated health package, select a date, and our team will
+              confirm your slot within working hours.
+            </p>
+            <nav className="flex items-center gap-2 text-sm" style={{ color: "rgba(255,255,255,0.55)" }}>
+              <Link href="/" className="hover:text-white transition-colors">Home</Link>
+              <span>/</span>
+              <span style={{ color: "#fff" }}>Appointments</span>
+            </nav>
           </Reveal>
         </div>
       </section>
@@ -107,9 +101,9 @@ function AppointmentsInner() {
           <div className="grid gap-10 lg:grid-cols-3">
             {/* Form */}
             <Reveal direction="right" className="lg:col-span-2">
-              <div className="bg-white rounded-3xl border border-slate-100 shadow-premium p-5 sm:p-8">
-                <h2 className="text-2xl font-black text-slate-900 mb-2">Appointment Details</h2>
-                <p className="text-slate-500 mb-7">Fill in your details and we will confirm your booking promptly.</p>
+              <div className="npl-card bg-white p-5 sm:p-8">
+                <h2 className="text-2xl font-bold mb-2" style={{ color: "#040B2F" }}>Appointment Details</h2>
+                <p className="mb-7" style={{ color: "#40474F" }}>Fill in your details and we will confirm your booking promptly.</p>
 
                 {status === "success" && (
                   <div className="mb-6 rounded-2xl bg-emerald-50 border border-emerald-200 p-4 text-emerald-800 text-sm font-medium">
@@ -131,46 +125,51 @@ function AppointmentsInner() {
 
                   <div className="grid sm:grid-cols-2 gap-5">
                     <div>
-                      <label className="block text-sm font-semibold text-slate-700 mb-2" htmlFor="testType">
+                      <label className="block text-sm font-semibold mb-2" style={{ color: "#40474F" }} htmlFor="testType">
                         Test / Service
                       </label>
                       <input
                         id="testType" name="testType" list="test-list"
                         value={form.testType} onChange={handleChange} required
                         placeholder="Start typing a test name…"
-                        className="w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-slate-900 placeholder:text-slate-400 focus:border-blue-400 focus:ring-4 focus:ring-blue-100 focus:outline-none transition-all"
+                        className="w-full rounded-2xl border px-4 py-3 transition-all focus:outline-none focus:ring-4"
+                        style={{
+                          borderColor: "#E2E6F0", background: "#F0FDF9", color: "#040B2F",
+                        }}
                       />
                       <datalist id="test-list">
                         {testNames.map((t) => <option key={t} value={t} />)}
                       </datalist>
                     </div>
                     <div>
-                      <label className="block text-sm font-semibold text-slate-700 mb-2" htmlFor="date">
+                      <label className="block text-sm font-semibold mb-2" style={{ color: "#40474F" }} htmlFor="date">
                         Preferred Date
                       </label>
                       <input
                         id="date" name="date" type="date" required
                         min={minDate} value={form.date} onChange={handleChange}
-                        className="w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-slate-900 focus:border-blue-400 focus:ring-4 focus:ring-blue-100 focus:outline-none transition-all"
+                        className="w-full rounded-2xl border px-4 py-3 transition-all focus:outline-none focus:ring-4"
+                        style={{ borderColor: "#E2E6F0", background: "#F0FDF9", color: "#040B2F" }}
                       />
                     </div>
                   </div>
 
                   <div>
-                    <label className="block text-sm font-semibold text-slate-700 mb-2" htmlFor="notes">
+                    <label className="block text-sm font-semibold mb-2" style={{ color: "#40474F" }} htmlFor="notes">
                       Additional Notes (optional)
                     </label>
                     <textarea
                       id="notes" name="notes" rows={4} value={form.notes} onChange={handleChange}
                       placeholder="Fasting status, mobility needs, previous reports, etc."
-                      className="w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-slate-900 placeholder:text-slate-400 focus:border-blue-400 focus:ring-4 focus:ring-blue-100 focus:outline-none transition-all"
+                      className="w-full rounded-2xl border px-4 py-3 transition-all focus:outline-none focus:ring-4"
+                      style={{ borderColor: "#E2E6F0", background: "#F0FDF9", color: "#040B2F" }}
                     />
                   </div>
 
                   <button
                     type="submit" disabled={status === "loading"}
                     className="lab-btn btn-pop w-full justify-center text-base disabled:opacity-60 disabled:cursor-not-allowed"
-                    style={{ borderRadius: "10px", padding: "16px 32px" }}
+                    style={{ padding: "16px 32px" }}
                   >
                     {status === "loading" ? "Booking…" : "Confirm Appointment →"}
                   </button>
@@ -182,13 +181,13 @@ function AppointmentsInner() {
             <Reveal direction="left" delay={0.1} as="aside" className="space-y-6">
               {[
                 {
-                  icon: "📞", gradient: "from-blue-500 to-cyan-400",
+                  icon: "📞",
                   title: "Need Help?",
                   body: "Our team is available Sun–Fri 7:00–19:00 and Sat 8:00–16:00.",
                   cta: { label: "Call +977-1-4002747", href: "tel:+97714002747" },
                 },
                 {
-                  icon: "📋", gradient: "from-violet-500 to-purple-400",
+                  icon: "📋",
                   title: "Before Your Test",
                   items: [
                     "Fast 8–12 hours for fasting tests",
@@ -198,7 +197,7 @@ function AppointmentsInner() {
                   ],
                 },
                 {
-                  icon: "🕐", gradient: "from-emerald-500 to-teal-400",
+                  icon: "🕐",
                   title: "Lab Hours",
                   hours: [
                     { day: "Sunday – Friday", time: "7:00 – 19:00" },
@@ -206,17 +205,17 @@ function AppointmentsInner() {
                   ],
                 },
               ].map((card) => (
-                <div key={card.title} className="bg-white rounded-3xl border border-slate-100 shadow-premium p-7 card-premium">
-                  <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${card.gradient} flex items-center justify-center text-xl mb-4 shadow-md`}>
+                <div key={card.title} className="npl-card bg-white p-7">
+                  <div className="w-12 h-12 rounded-xl flex items-center justify-center text-xl mb-4" style={{ background: "#ECFDF5" }}>
                     {card.icon}
                   </div>
-                  <h3 className="text-lg font-bold text-slate-900 mb-3">{card.title}</h3>
-                  {card.body && <p className="text-slate-500 text-sm leading-relaxed">{card.body}</p>}
+                  <h3 className="text-lg font-bold mb-3" style={{ color: "#040B2F" }}>{card.title}</h3>
+                  {card.body && <p className="text-sm leading-relaxed" style={{ color: "#40474F" }}>{card.body}</p>}
                   {card.cta && (
                     <a
                       href={card.cta.href}
                       className="lab-btn btn-pop mt-4 inline-flex items-center gap-2"
-                      style={{ fontSize: "13px", padding: "10px 18px", borderRadius: "8px" }}
+                      style={{ fontSize: "13px", padding: "10px 18px" }}
                     >
                       {card.cta.label}
                     </a>
@@ -224,8 +223,8 @@ function AppointmentsInner() {
                   {card.items && (
                     <ul className="space-y-2">
                       {card.items.map((item) => (
-                        <li key={item} className="flex items-start gap-2 text-sm text-slate-600">
-                          <span className="text-emerald-500 mt-0.5">✓</span> {item}
+                        <li key={item} className="flex items-start gap-2 text-sm" style={{ color: "#40474F" }}>
+                          <span className="mt-0.5" style={{ color: "#00B67A" }}>✓</span> {item}
                         </li>
                       ))}
                     </ul>
@@ -234,8 +233,8 @@ function AppointmentsInner() {
                     <ul className="space-y-2">
                       {card.hours.map((h) => (
                         <li key={h.day} className="flex justify-between text-sm">
-                          <span className="text-slate-500">{h.day}</span>
-                          <span className="font-bold text-slate-900">{h.time}</span>
+                          <span style={{ color: "#40474F" }}>{h.day}</span>
+                          <span className="font-bold" style={{ color: "#040B2F" }}>{h.time}</span>
                         </li>
                       ))}
                     </ul>
@@ -264,10 +263,11 @@ function Field({ label, name, type = "text", value, onChange, required }: {
 }) {
   return (
     <div>
-      <label className="block text-sm font-semibold text-slate-700 mb-2" htmlFor={name}>{label}</label>
+      <label className="block text-sm font-semibold mb-2" style={{ color: "#40474F" }} htmlFor={name}>{label}</label>
       <input
         id={name} name={name} type={type} value={value} onChange={onChange} required={required}
-        className="w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-slate-900 placeholder:text-slate-400 focus:border-blue-400 focus:ring-4 focus:ring-blue-100 focus:outline-none transition-all"
+        className="w-full rounded-2xl border px-4 py-3 transition-all focus:outline-none focus:ring-4"
+        style={{ borderColor: "#E2E6F0", background: "#F0FDF9", color: "#040B2F" }}
       />
     </div>
   );

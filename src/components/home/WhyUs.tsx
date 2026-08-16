@@ -2,128 +2,124 @@ import Image from "next/image";
 import Link from "next/link";
 import Reveal from "@/components/ui/Reveal";
 
-const benefits = [
-  "State-of-the-art automated analysers with daily QC checks",
-  "Expert pathologists review every critical result before release",
-  "Same-day routine reports, urgent panels within 4 hours",
-  "Home sample collection at your preferred time",
-  "Confidential digital reports delivered securely",
-  "Transparent pricing — no hidden charges",
+const capabilities = [
+  {
+    label: "Biochemistry & Immunology",
+    icon: <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#00B67A" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M10 2v7.527a2 2 0 0 1-.211.896L4.72 19.1a1 1 0 0 0 .9 1.9h12.76a1 1 0 0 0 .9-1.9l-5.069-8.677A2 2 0 0 1 14 9.527V2"/><path d="M8.5 2h7"/><path d="M7 16h10"/></svg>,
+  },
+  {
+    label: "Hematology",
+    icon: <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#00B67A" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 2a10 10 0 1 0 10 10"/><path d="M12 2v10l4.24 4.24"/></svg>,
+  },
+  {
+    label: "Microbiology",
+    icon: <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#00B67A" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="4"/><line x1="4.93" y1="4.93" x2="9.17" y2="9.17"/><line x1="14.83" y1="14.83" x2="19.07" y2="19.07"/><line x1="14.83" y1="9.17" x2="19.07" y2="4.93"/><line x1="4.93" y1="19.07" x2="9.17" y2="14.83"/></svg>,
+  },
+  {
+    label: "Histopathology",
+    icon: <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#00B67A" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>,
+  },
+  {
+    label: "Cytopathology",
+    icon: <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#00B67A" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 12h8"/><path d="M12 8v8"/></svg>,
+  },
+  {
+    label: "Molecular Diagnostics",
+    icon: <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#00B67A" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M2 12s4-8 10-8 10 8 10 8-4 8-10 8-10-8-10-8z"/><circle cx="12" cy="12" r="3"/></svg>,
+  },
+  {
+    label: "Immunofluorescence",
+    icon: <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#00B67A" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>,
+  },
+  {
+    label: "Next Generation Sequencing",
+    icon: <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#00B67A" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 10h-4V6"/><path d="M6 14h4v4"/><path d="M3 3l7 7"/><path d="M21 21l-7-7"/><path d="M21 3l-7 7"/><path d="M3 21l7-7"/></svg>,
+  },
 ];
 
 export default function WhyUs() {
   return (
-    <section className="py-24 overflow-hidden" style={{ background: "#fff" }}>
+    <section className="py-20 overflow-hidden bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-          {/* Left: Images + Opening Hours */}
-          <Reveal direction="right" className="relative">
-            {/* Big number bg text */}
-            <div
-              className="absolute -top-8 -left-4 text-[120px] font-black leading-none select-none pointer-events-none"
-              style={{ color: "#DCDCDC", zIndex: 0 }}
-            >
-              12+
+        {/* Header */}
+        <Reveal className="mb-12">
+          <p className="text-xs font-bold uppercase tracking-widest mb-3" style={{ color: "#00B67A" }}>About Us</p>
+          <h2
+            className="text-3xl sm:text-4xl font-bold h-display"
+            style={{ color: "#040B2F" }}
+          >
+            Your Trusted Partner in Quality Diagnostics
+          </h2>
+        </Reveal>
+
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 items-center">
+
+          {/* Left: Content */}
+          <Reveal direction="right">
+            <p className="text-base leading-relaxed mb-4" style={{ color: "#5D6478" }}>
+              Life Quest Clinical Lab is a privately owned, independent clinical laboratory.
+              Established in 2021, it is a state-of-the-art NPHL accredited, Category &apos;A&apos;
+              laboratory providing quality and STAT services to hospitals, clinics, and patients.
+            </p>
+            <p className="text-base leading-relaxed mb-10" style={{ color: "#5D6478" }}>
+              We are the first in Nepal to provide Molecular Pathology Services under one roof,
+              ensuring accurate and timely results for every patient.
+            </p>
+
+            {/* Capabilities list */}
+            <div className="grid grid-cols-2 gap-3">
+              {capabilities.map((c) => (
+                <div
+                  key={c.label}
+                  className="flex items-center gap-3 px-4 py-3 rounded-xl"
+                  style={{ background: "#F0FDF9", border: "1px solid #E2E6F0" }}
+                >
+                  <span className="shrink-0">{c.icon}</span>
+                  <span className="text-sm font-medium" style={{ color: "#040B2F" }}>{c.label}</span>
+                </div>
+              ))}
             </div>
 
-            {/* Image collage */}
-            <div className="relative z-10 flex gap-4">
-              {/* Tall left image */}
-              <div className="w-1/2 relative rounded-lg overflow-hidden" style={{ height: "420px" }}>
-                <Image
-                  src="/testalize-me-9xHsWmh3m_4-unsplash.jpg"
-                  alt="Lab scientist"
-                  fill
-                  sizes="250px"
-                  className="object-cover"
-                />
-              </div>
-
-              {/* Right: two stacked images */}
-              <div className="w-1/2 flex flex-col gap-4">
-                <div className="relative rounded-lg overflow-hidden" style={{ height: "200px" }}>
-                  <Image
-                    src="/vienhuyethoc-blood-test-5906819_1920.jpg"
-                    alt="Blood analysis"
-                    fill
-                    sizes="250px"
-                    className="object-cover"
-                  />
-                </div>
-                <div className="relative rounded-lg overflow-hidden flex-1" style={{ minHeight: "200px" }}>
-                  <Image
-                    src="/cdc-XLhDvfz0sUM-unsplash.jpg"
-                    alt="Medical professional"
-                    fill
-                    sizes="250px"
-                    className="object-cover"
-                  />
-                </div>
-              </div>
-            </div>
-
-            {/* Opening Hours panel */}
-            <div
-              className="hours-panel relative z-10 mt-6 p-6 rounded-lg"
-              style={{ background: "#134CF7", color: "#fff" }}
-            >
-              <h5 className="text-base font-semibold mb-4 uppercase tracking-wide">Opening Hours</h5>
-              <div className="space-y-2">
-                {[
-                  { day: "Sun – Fri", time: "7:00 AM – 7:00 PM" },
-                  { day: "Saturday", time: "8:00 AM – 4:00 PM" },
-                  { day: "Emergency", time: "24 / 7" },
-                ].map((h) => (
-                  <div key={h.day} className="flex justify-between text-sm border-b border-white/20 pb-2">
-                    <span style={{ color: "rgba(255,255,255,0.85)" }}>{h.day}</span>
-                    <span className="font-semibold">{h.time}</span>
-                  </div>
-                ))}
-              </div>
+            <div className="mt-10">
+              <Link href="/about" className="lab-btn inline-flex items-center gap-2" style={{ fontSize: "14px", padding: "12px 28px" }}>
+                Learn More About Us
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M5 12h14M12 5l7 7-7 7" />
+                </svg>
+              </Link>
             </div>
           </Reveal>
 
-          {/* Right: Text content */}
-          <Reveal direction="left" delay={0.1}>
-            <div className="lab-subtitle mb-4">About Our Laboratory</div>
-            <h2 className="text-4xl sm:text-5xl font-bold mb-6 leading-tight" style={{ color: "#040B2F" }}>
-              Advancing Science Through{" "}
-              <span style={{ color: "#134CF7" }}>Research</span>
-            </h2>
-            <p className="text-base leading-relaxed mb-8" style={{ color: "#444444" }}>
-              Our commitment to excellence is unwavering. We are dedicated to providing
-              the highest standards of accuracy, reliability, and precision in every
-              diagnostic service we offer — across our three branches in Nepal with
-              same-day reports and home sample collection.
-            </p>
+          {/* Right: Image collage — desktop only */}
+          <Reveal direction="left" delay={0.1} className="hidden lg:block">
+            <div className="relative">
+              <div className="flex gap-4">
+                <div className="w-1/2 relative rounded-3xl overflow-hidden" style={{ height: "460px" }}>
+                  <Image
+                    src="/our%20images/DSC00269.jpg"
+                    alt="Life Quest Clinical Lab full team"
+                    fill sizes="250px" className="object-cover object-top"
+                  />
+                </div>
+                <div className="w-1/2 flex flex-col gap-4">
+                  <div className="relative rounded-3xl overflow-hidden" style={{ height: "218px" }}>
+                    <Image
+                      src="/our%20images/DSC00045.jpg"
+                      alt="Blood collection by Life Quest nurse"
+                      fill sizes="250px" className="object-cover"
+                    />
+                  </div>
+                  <div className="relative rounded-3xl overflow-hidden flex-1" style={{ minHeight: "218px" }}>
+                    <Image
+                      src="/our%20images/DSC00149.jpg"
+                      alt="Beckman Coulter Access 2 analyzer at Life Quest"
+                      fill sizes="250px" className="object-cover"
+                    />
+                  </div>
+                </div>
+              </div>
 
-            {/* Benefit list */}
-            <ul className="space-y-3 mb-10">
-              {benefits.map((b) => (
-                <li
-                  key={b}
-                  className="benefit-item flex items-start gap-3 text-sm rounded-lg px-3 py-2 -mx-3 cursor-default group"
-                  style={{ color: "#444444" }}
-                >
-                  <span
-                    className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full text-white text-xs font-bold transition-transform duration-200 group-hover:scale-110"
-                    style={{ background: "#134CF7" }}
-                  >
-                    ✓
-                  </span>
-                  {b}
-                </li>
-              ))}
-            </ul>
-
-            <Link href="/about" className="lab-btn btn-pop inline-flex items-center gap-2" style={{ borderRadius: "10px" }}>
-              <svg width="16" height="16" viewBox="0 0 19 19" fill="none">
-                <line x1="1" y1="18" x2="17.8" y2="1.2" stroke="currentColor" strokeWidth="1.5"/>
-                <line x1="1.2" y1="1" x2="18" y2="1" stroke="currentColor" strokeWidth="1.5"/>
-                <line x1="18" y1="17.8" x2="18" y2="1" stroke="currentColor" strokeWidth="1.5"/>
-              </svg>
-              Discover More
-            </Link>
+            </div>
           </Reveal>
         </div>
       </div>

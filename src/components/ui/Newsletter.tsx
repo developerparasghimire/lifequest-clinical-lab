@@ -45,18 +45,18 @@ export default function Newsletter({
       className={`relative overflow-hidden ${className ?? ""}`}
       style={{
         background: dark
-          ? "linear-gradient(120deg, #020517 0%, #081a55 60%, #134CF7 110%)"
+          ? "linear-gradient(120deg, #020517 0%, #081a55 60%, #00B67A 110%)"
           : "linear-gradient(135deg, #F4F7FF 0%, #ffffff 100%)",
       }}
     >
       {/* Decorative orbs */}
       <div
         className={`absolute -top-24 -left-24 w-[420px] h-[420px] rounded-full pointer-events-none ${dark ? "" : "opacity-50"} animate-blob-1`}
-        style={{ background: dark ? "rgba(0,198,255,0.20)" : "rgba(19,76,247,0.10)", filter: "blur(70px)" }}
+        style={{ background: dark ? "rgba(0,198,255,0.20)" : "rgba(0,182,122,0.10)", filter: "blur(70px)" }}
       />
       <div
         className={`absolute -bottom-24 -right-24 w-[380px] h-[380px] rounded-full pointer-events-none animate-blob-2`}
-        style={{ background: dark ? "rgba(19,76,247,0.30)" : "rgba(0,198,255,0.10)", filter: "blur(70px)" }}
+        style={{ background: dark ? "rgba(0,182,122,0.30)" : "rgba(0,198,255,0.10)", filter: "blur(70px)" }}
       />
 
       <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
@@ -71,7 +71,7 @@ export default function Newsletter({
                 style={{ color: dark ? "#fff" : "#040B2F" }}
               >
                 Health insights delivered to your{" "}
-                <span style={{ color: dark ? "#93c5fd" : "#134CF7" }}>inbox monthly</span>.
+                <span style={{ color: "#00B67A" }}>inbox monthly</span>.
               </h2>
               <p className="mt-4 text-base leading-relaxed" style={{ color: dark ? "rgba(255,255,255,0.7)" : "#444" }}>
                 Practical tips, new test launches, and expert-curated articles —

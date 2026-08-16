@@ -88,7 +88,9 @@ export default async function BlogPostPage({ params }: Props) {
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleLd) }}
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(articleLd).replace(/</g, "\\u003c").replace(/>/g, "\\u003e").replace(/&/g, "\\u0026"),
+        }}
       />
       {/* Hero Banner — matches site PageBanner style */}
       <section className="relative overflow-hidden" style={{ minHeight: "320px" }}>
@@ -110,11 +112,10 @@ export default async function BlogPostPage({ params }: Props) {
               ].join(", "),
             }}
           />
-          <div className="absolute -top-24 -left-24 w-[400px] h-[400px] rounded-full pointer-events-none" style={{ background: "rgba(19,76,247,0.28)", filter: "blur(80px)" }} />
         </div>
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 sm:py-32">
-          <div className="inline-flex items-center gap-2 mb-5 text-xs font-semibold uppercase tracking-[0.15em]" style={{ color: "#134CF7" }}>
-            <span className="inline-block w-6 h-[2px] rounded" style={{ background: "#134CF7" }} />
+          <div className="inline-flex items-center gap-2 mb-5 text-xs font-semibold uppercase tracking-[0.15em]" style={{ color: "#00B67A" }}>
+            <span className="inline-block w-6 h-[2px] rounded" style={{ background: "#00B67A" }} />
             Health &amp; Diagnostics
           </div>
           <h1
@@ -145,7 +146,7 @@ export default async function BlogPostPage({ params }: Props) {
           <div className="grid lg:grid-cols-3 gap-10">
             <article className="lg:col-span-2 bg-white overflow-hidden card-premium p-8 sm:p-10" style={{ borderRadius: "16px" }}>
               {post.excerpt && (
-                <p className="text-lg mb-8 font-medium leading-relaxed" style={{ color: "#444", borderLeft: "4px solid #134CF7", paddingLeft: "1rem" }}>
+                <p className="text-lg mb-8 font-medium leading-relaxed" style={{ color: "#444", borderLeft: "4px solid #00B67A", paddingLeft: "1rem" }}>
                   {post.excerpt}
                 </p>
               )}

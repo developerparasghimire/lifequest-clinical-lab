@@ -7,6 +7,17 @@ interface RouteParams {
   params: Promise<{ id: string }>;
 }
 
+export async function GET(_req: NextRequest, { params }: RouteParams) {
+  const { id } = await params;
+  try {
+    const service = await prisma.service.findUnique({ where: { id } });
+    if (!service) return NextResponse.json({ success: false, error: "Not found" }, { status: 404 });
+    return NextResponse.json({ success: true, data: service });
+  } catch {
+    return NextResponse.json({ success: false, error: "Failed to fetch service" }, { status: 500 });
+  }
+}
+
 export async function PATCH(req: NextRequest, { params }: RouteParams) {
   const session = await auth();
   if (!session) {

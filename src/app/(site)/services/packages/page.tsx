@@ -1,16 +1,17 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
 import PackagesBrowser from "@/components/services/PackagesBrowser";
 import Reveal from "@/components/ui/Reveal";
 
 export const metadata: Metadata = {
   title: "Health Checkup Packages",
-  description: "Affordable curated health packages from Life Quest Clinical Lab — full body checkup, diabetes, thyroid, cardiac and more. Save more with bundled tests.",
+  description:
+    "Affordable curated health checkup packages from Life Quest Clinical Lab — full body, diabetes, thyroid, cardiac and more.",
   alternates: { canonical: "/services/packages" },
   openGraph: {
     title: "Health Checkup Packages · Life Quest Clinical Lab",
-    description: "Affordable curated health packages — full body checkup, diabetes, thyroid, cardiac and more.",
+    description:
+      "Affordable curated health packages — full body checkup, diabetes, thyroid, cardiac and more.",
     url: "/services/packages",
     type: "website",
   },
@@ -19,40 +20,18 @@ export const metadata: Metadata = {
 export default function PackagesPage() {
   return (
     <>
-      {/* Hero Banner */}
-      <section className="relative overflow-hidden" style={{ minHeight: "340px" }}>
-        <div className="absolute inset-0">
-          <Image
-            src="/julia-koblitz-RlOAwXt2fEA-unsplash.jpg"
-            alt="Health checkup packages"
-            fill
-            priority
-            sizes="100vw"
-            className="object-cover object-center"
-          />
-          <div
-            className="absolute inset-0"
-            style={{
-              background: [
-                "linear-gradient(274deg, rgba(1,9,10,0.25) 30%, rgba(1,9,10,0.72) 65%, rgba(1,9,10,0.97))",
-                "linear-gradient(1deg, rgba(1,9,10,0.15) 40%, rgba(1,9,10,0.5) 75%, rgba(1,9,10,0.88))",
-              ].join(", "),
-            }}
-          />
-          <div className="absolute -top-32 -left-32 w-[500px] h-[500px] rounded-full pointer-events-none animate-blob-1" style={{ background: "rgba(19,76,247,0.28)", filter: "blur(80px)" }} />
-          <div className="absolute -bottom-24 right-0 w-[400px] h-[400px] rounded-full pointer-events-none animate-blob-2" style={{ background: "rgba(0,198,255,0.14)", filter: "blur(70px)" }} />
-        </div>
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-28 sm:py-36">
+      {/* Hero */}
+      <section className="relative overflow-hidden" style={{ background: "linear-gradient(135deg, #040B2F 0%, #071a3e 55%, #0a2060 100%)" }}>
+        <div className="absolute inset-0 pointer-events-none" style={{ backgroundImage: "radial-gradient(circle, rgba(255,255,255,0.04) 1px, transparent 1px)", backgroundSize: "28px 28px" }} />
+        <div className="absolute -top-24 -right-24 w-[500px] h-[500px] rounded-full pointer-events-none" style={{ background: "rgba(0,182,122,0.18)", filter: "blur(80px)" }} />
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-24">
           <Reveal>
-            <div className="inline-flex items-center gap-2 mb-5 text-xs font-semibold uppercase tracking-[0.15em]" style={{ color: "#134CF7" }}>
-              <span className="inline-block w-6 h-[2px] rounded" style={{ background: "#134CF7" }} />
-              Life Quest Clinical Lab
-            </div>
-            <h1 className="font-bold leading-[1.07] tracking-tight mb-5 h-display" style={{ fontSize: "clamp(2.2rem, 5vw, 4rem)", color: "#fff" }}>
+            <p className="text-xs font-bold uppercase tracking-widest mb-3" style={{ color: "#00B67A" }}>Services</p>
+            <h1 className="font-bold leading-tight mb-4 h-display" style={{ fontSize: "clamp(1.8rem, 3.5vw, 2.75rem)", color: "#fff" }}>
               Health Checkup Packages
             </h1>
-            <p className="max-w-2xl text-lg leading-relaxed mb-8" style={{ color: "rgba(255,255,255,0.75)" }}>
-              Curated bundles of essential tests at discounted prices. Choose the package that fits your health goals.
+            <p className="text-base max-w-xl mb-5" style={{ color: "rgba(255,255,255,0.78)" }}>
+              Curated diagnostic packages for full body, diabetes, thyroid, cardiac and more.
             </p>
             <nav className="flex items-center gap-2 text-sm" style={{ color: "rgba(255,255,255,0.5)" }}>
               <Link href="/" className="hover:text-white transition-colors">Home</Link>
@@ -65,8 +44,7 @@ export default function PackagesPage() {
         </div>
       </section>
 
-      {/* Browser */}
-      <section className="py-14 bg-white">
+      <section className="bg-white py-10 sm:py-12 lg:py-14">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <PackagesBrowser />
         </div>

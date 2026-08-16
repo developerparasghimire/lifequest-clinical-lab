@@ -36,7 +36,7 @@ export default function FloatingActions() {
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 8 }}
-            className="fixed bottom-24 right-5 z-40 inline-flex h-11 w-11 items-center justify-center rounded-full bg-white text-[#040B2F] shadow-soft border border-slate-200 hover:border-[#134CF7] hover:text-[#134CF7] transition-colors"
+            className="fixed bottom-24 right-5 z-40 inline-flex h-11 w-11 items-center justify-center rounded-full bg-white text-[#040B2F] shadow-soft border border-slate-200 hover:border-[#00B67A] hover:text-[#00B67A] transition-colors"
           >
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
               <polyline points="18 15 12 9 6 15" />

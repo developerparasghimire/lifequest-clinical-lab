@@ -36,6 +36,21 @@ const FIELD_GROUPS: { title: string; fields: { key: string; label: string; type?
     ],
   },
   {
+    title: "Homepage Statistics",
+    fields: [
+      { key: "home.stat1.value", label: "Stat 1 — Number",  placeholder: "1,500+" },
+      { key: "home.stat1.label", label: "Stat 1 — Label",   placeholder: "Tests Daily" },
+      { key: "home.stat2.value", label: "Stat 2 — Number",  placeholder: "50,000+" },
+      { key: "home.stat2.label", label: "Stat 2 — Label",   placeholder: "Tests Monthly" },
+      { key: "home.stat3.value", label: "Stat 3 — Number",  placeholder: "50+" },
+      { key: "home.stat3.label", label: "Stat 3 — Label",   placeholder: "Staff Members" },
+      { key: "home.stat4.value", label: "Stat 4 — Number",  placeholder: "3" },
+      { key: "home.stat4.label", label: "Stat 4 — Label",   placeholder: "Labs Across Nepal" },
+      { key: "home.stat5.value", label: "Stat 5 — Number",  placeholder: "500+" },
+      { key: "home.stat5.label", label: "Stat 5 — Label",   placeholder: "Patients Daily" },
+    ],
+  },
+  {
     title: "Social Links",
     fields: [
       { key: "social.facebook",  label: "Facebook URL",  type: "url", placeholder: "https://www.facebook.com/lifequestclinicallab" },

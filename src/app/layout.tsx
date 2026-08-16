@@ -9,7 +9,7 @@ const SITE_DESCRIPTION =
 const OG_IMAGE = "/logo.png";
 
 export const viewport: Viewport = {
-  themeColor: "#134CF7",
+  themeColor: "#00B67A",
   width: "device-width",
   initialScale: 1,
 };
@@ -17,7 +17,7 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: `${SITE_NAME} — Trusted Medical Diagnostics in Nepal`,
+    default: `${SITE_NAME}`,
     template: `%s · ${SITE_NAME}`,
   },
   description: SITE_DESCRIPTION,
@@ -55,9 +55,13 @@ export const metadata: Metadata = {
     languages: { "en-NP": "/", en: "/" },
   },
   icons: {
-    icon: [{ url: "/logo.png", type: "image/png" }],
-    shortcut: "/logo.png",
-    apple: "/logo.png",
+    icon: [
+      { url: "/favicon.svg", type: "image/svg+xml", sizes: "any" },
+      { url: "/favicon-64.png", type: "image/png", sizes: "64x64" },
+      { url: "/favicon-32.png", type: "image/png", sizes: "32x32" },
+    ],
+    shortcut: "/favicon-64.png",
+    apple: "/favicon-64.png",
   },
   manifest: "/site.webmanifest",
   robots: {
@@ -77,7 +81,7 @@ export const metadata: Metadata = {
     locale: "en_NP",
     url: SITE_URL,
     siteName: SITE_NAME,
-    title: `${SITE_NAME} — Trusted Medical Diagnostics in Nepal`,
+    title: `${SITE_NAME}`,
     description: SITE_DESCRIPTION,
     images: [
       {
@@ -90,7 +94,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: `${SITE_NAME} — Trusted Medical Diagnostics in Nepal`,
+    title: `${SITE_NAME}`,
     description: SITE_DESCRIPTION,
     images: [OG_IMAGE],
   },
@@ -201,7 +205,7 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link
           rel="stylesheet"
-          href="https://fonts.googleapis.com/css2?family=Mona+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,600&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap"
         />
         <script
           type="application/ld+json"

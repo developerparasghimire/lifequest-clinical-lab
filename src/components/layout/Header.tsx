@@ -1,23 +1,32 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 
-type NavChild = { href: string; label: string; desc?: string };
+type NavChild = { href: string; label: string };
 type NavLink = { href: string; label: string; external?: boolean; children?: NavChild[] };
 
 const navLinks: NavLink[] = [
   { href: "/", label: "Home" },
-  { href: "/about", label: "About" },
+  {
+    href: "/about",
+    label: "About Us",
+    children: [
+      { href: "/about/who-we-are", label: "Who We Are" },
+      { href: "/about/our-team", label: "Our Team" },
+      { href: "/about/our-journey", label: "Our Journey" },
+      { href: "/about/ifcc-pep", label: "IFCC" },
+    ],
+  },
   {
     href: "/services",
     label: "Services",
     children: [
-      { href: "/services/lab-tests", label: "Lab Tests"},
-      { href: "/services/packages", label: "Packages"},
+      { href: "/services/lab-tests", label: "Lab Tests" },
+      { href: "/services/packages", label: "Packages" },
     ],
   },
   { href: "/appointments", label: "Appointments" },
@@ -29,15 +38,21 @@ const navLinks: NavLink[] = [
 export default function Header() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [hideTopBar, setHideTopBar] = useState(false);
+  const [hidden, setHidden] = useState(false);
+  const lastScrollY = useRef(0);
   const pathname = usePathname();
-  const reduce = useReducedMotion();
 
   useEffect(() => {
     const onScroll = () => {
-      const y = window.scrollY;
-      setScrolled(y > 20);
-      setHideTopBar(y > 80);
+      const currentY = window.scrollY;
+      setScrolled(currentY > 20);
+      // Hide when scrolling down past 80px; reveal when scrolling up; never hide while mobile menu is open
+      if (currentY < 80) {
+        setHidden(false);
+      } else {
+        setHidden(currentY > lastScrollY.current);
+      }
+      lastScrollY.current = currentY;
     };
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
@@ -57,46 +72,20 @@ export default function Header() {
     <header
       className="sticky top-0 z-50 transition-all duration-300"
       style={{
-        background: scrolled ? "rgba(255,255,255,0.78)" : "#ffffff",
+        background: scrolled ? "rgba(255,255,255,0.82)" : "#ffffff",
         backdropFilter: scrolled ? "saturate(160%) blur(14px)" : "none",
         WebkitBackdropFilter: scrolled ? "saturate(160%) blur(14px)" : "none",
         boxShadow: scrolled ? "0 6px 30px -12px rgba(4,11,47,0.18)" : "0 1px 0 rgba(220,220,220,0.7)",
+        transform: hidden && !open ? "translateY(-100%)" : "translateY(0)",
+        transition: "transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease",
       }}
     >
       <a
         href="#main"
-        className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-2 focus:z-50 focus:rounded focus:bg-[#134CF7] focus:px-3 focus:py-2 focus:text-sm focus:text-white"
+        className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-2 focus:z-50 focus:rounded focus:bg-[#00B67A] focus:px-3 focus:py-2 focus:text-sm focus:text-white"
       >
         Skip to content
       </a>
-
-      {/* Announcement top bar — collapses on scroll */}
-      <AnimatePresence initial={false}>
-        {!hideTopBar && (
-          <motion.div
-            key="announce"
-            initial={reduce ? false : { height: 0, opacity: 0 }}
-            animate={reduce ? {} : { height: "auto", opacity: 1 }}
-            exit={reduce ? {} : { height: 0, opacity: 0 }}
-            transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] as const }}
-            className="overflow-hidden"
-            style={{ background: "linear-gradient(90deg,#040B2F,#0c1f6e)" }}
-          >
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between gap-4 py-2 text-[12px] text-white/85">
-              <span className="flex items-center gap-2 truncate">
-                <span className="truncate">Same-day reports &bull; Home sample collection across Kathmandu Valley</span>
-              </span>
-              <div className="hidden sm:flex items-center gap-5">
-                <a href="tel:+97714002747" className="flex items-center gap-1.5 hover:text-white transition-colors">
-                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 10.8a19.79 19.79 0 01-3.07-8.67A2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/></svg>
-                  +977-1-4002747
-                </a>
-                <span className="opacity-60">Sun–Fri 7AM – 7PM • Sat 8AM – 4PM</span>
-              </div>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <nav className={`flex items-center justify-between gap-6 transition-all duration-300 ${scrolled ? "h-[68px]" : "h-[76px]"}`}>
@@ -105,12 +94,17 @@ export default function Header() {
             <Image
               src="/logo.png"
               alt="Life Quest Clinical Lab"
-              width={160}
-              height={93}
+              width={200}
+              height={80}
               priority
               loading="eager"
-              className="h-14 w-auto object-contain transition-transform group-hover:scale-105"
-              style={{ filter: "drop-shadow(0 1px 2px rgba(0,0,0,0.18))" }}
+              className="w-auto object-contain transition-transform group-hover:scale-105"
+              style={{
+                height: scrolled ? "38px" : "44px",
+                maxWidth: "180px",
+                transition: "height 0.3s ease",
+                filter: "drop-shadow(0 1px 2px rgba(0,0,0,0.12))",
+              }}
             />
           </Link>
 
@@ -126,15 +120,15 @@ export default function Header() {
                     aria-current={active ? "page" : undefined}
                     aria-haspopup={hasChildren ? "menu" : undefined}
                     {...(l.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-                    className="group relative px-4 py-2 text-[14px] font-medium rounded transition-colors hover:text-[#134CF7] inline-flex items-center gap-1"
-                    style={{ color: active ? "#134CF7" : "#444444" }}
+                    className="group relative px-4 py-2 text-[14px] font-semibold rounded transition-colors hover:text-[#00B67A] inline-flex items-center gap-1"
+                    style={{ color: active ? "#00B67A" : "#444444" }}
                   >
                     <span className="relative">
                       {l.label}
                       <span
                         className="absolute -bottom-1 left-0 right-0 h-[2px] rounded-full origin-left transition-transform duration-300 ease-out group-hover:scale-x-100"
                         style={{
-                          background: "#134CF7",
+                          background: "#00B67A",
                           transform: active ? "scaleX(1)" : "scaleX(0)",
                         }}
                       />
@@ -152,31 +146,20 @@ export default function Header() {
                     >
                       <div
                         role="menu"
-                        className="w-[300px] rounded-2xl border bg-white p-2 shadow-2xl"
-                        style={{ borderColor: "#EEF1F5" }}
+                        className="w-[260px] rounded-xl border bg-white py-1.5"
+                        style={{ borderColor: "#E5E7EB", boxShadow: "0 4px 24px rgba(0,0,0,0.10)" }}
                       >
                         {l.children!.map((c) => {
-                          const childActive = pathname.startsWith(c.href);
+                          const childActive = pathname === c.href || (c.href !== "/about" && pathname.startsWith(c.href));
                           return (
                             <Link
                               key={c.href}
                               href={c.href}
                               role="menuitem"
-                              className="flex items-start gap-3 rounded-xl px-3 py-3 transition-colors hover:bg-[#F0F4FF]"
-                              style={{ color: childActive ? "#134CF7" : "#040B2F" }}
+                              className="flex px-4 py-2.5 text-sm font-semibold transition-colors hover:bg-[#F0FDF9]"
+                              style={{ color: childActive ? "#00B67A" : "#040B2F" }}
                             >
-                              <span
-                                className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg text-base"
-                                style={{ background: "#EEF3FF", color: "#134CF7" }}
-                              >
-                                {c.label === "Packages" ? "📦" : "🔬"}
-                              </span>
-                              <span className="flex flex-col">
-                                <span className="text-sm font-semibold">{c.label}</span>
-                                {c.desc && (
-                                  <span className="text-xs text-slate-500 leading-snug">{c.desc}</span>
-                                )}
-                              </span>
+                              {c.label}
                             </Link>
                           );
                         })}
@@ -190,36 +173,10 @@ export default function Header() {
 
           {/* Right side */}
           <div className="flex items-center gap-3">
-            <a
-              href="tel:+97714002747"
-              className="hidden items-center gap-2 text-[14px] font-medium xl:inline-flex hover:text-[#134CF7] transition-colors"
-              style={{ color: "#444444" }}
-            >
-              <span className="inline-flex h-8 w-8 items-center justify-center rounded-full" style={{ background: "#EEF3FF", color: "#134CF7" }}>
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 10.8a19.79 19.79 0 01-3.07-8.67A2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z" />
-                </svg>
-              </span>
-              +977-1-4002747
-            </a>
-
-            <Link
-              href="/appointments"
-              className="hidden lab-btn btn-pop md:inline-flex text-sm"
-              style={{ padding: "10px 22px", borderRadius: "10px", fontSize: "14px" }}
-            >
-              Book a Test
-              <svg width="12" height="12" viewBox="0 0 19 19" fill="none">
-                <line x1="1" y1="18" x2="17.8" y2="1.2" stroke="currentColor" strokeWidth="1.5"/>
-                <line x1="1.2" y1="1" x2="18" y2="1" stroke="currentColor" strokeWidth="1.5"/>
-                <line x1="18" y1="17.8" x2="18" y2="1" stroke="currentColor" strokeWidth="1.5"/>
-              </svg>
-            </Link>
-
             {/* Mobile toggle */}
             <button
               type="button"
-              className="flex h-10 w-10 items-center justify-center rounded-lg lg:hidden border border-slate-200 hover:border-[#134CF7] hover:text-[#134CF7] transition-colors"
+              className="flex h-10 w-10 items-center justify-center rounded-lg lg:hidden border border-slate-200 hover:border-[#00B67A] hover:text-[#00B67A] transition-colors"
               style={{ color: "#040B2F" }}
               aria-label={open ? "Close menu" : "Open menu"}
               aria-expanded={open}
@@ -265,7 +222,7 @@ export default function Header() {
                   type="button"
                   aria-label="Close menu"
                   onClick={() => setOpen(false)}
-                  className="flex h-9 w-9 items-center justify-center rounded-lg border border-slate-200 hover:border-[#134CF7] hover:text-[#134CF7] transition-colors"
+                  className="flex h-9 w-9 items-center justify-center rounded-lg border border-slate-200 hover:border-[#00B67A] hover:text-[#00B67A] transition-colors"
                   style={{ color: "#040B2F" }}
                 >
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
@@ -285,8 +242,8 @@ export default function Header() {
                         <Link
                           href={l.href}
                           {...(l.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-                          className="flex items-center justify-between rounded-lg px-3 py-3 text-[15px] font-medium transition-colors"
-                          style={{ color: active ? "#134CF7" : "#444444", background: active ? "#F0F4FF" : "transparent" }}
+                          className="flex items-center justify-between rounded-lg px-3 py-3 text-[15px] font-semibold transition-colors"
+                          style={{ color: active ? "#00B67A" : "#444444", background: active ? "#ECFDF5" : "transparent" }}
                         >
                           {l.label}
                           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polyline points="9 18 15 12 9 6"/></svg>
@@ -299,8 +256,8 @@ export default function Header() {
                                 <li key={c.href}>
                                   <Link
                                     href={c.href}
-                                    className="flex items-center justify-between rounded-lg pl-4 pr-3 py-2.5 text-[14px] transition-colors"
-                                    style={{ color: cActive ? "#134CF7" : "#666", background: cActive ? "#F0F4FF" : "transparent" }}
+                                    className="flex items-center justify-between rounded-lg pl-4 pr-3 py-2.5 text-[14px] font-medium transition-colors"
+                                    style={{ color: cActive ? "#00B67A" : "#666", background: cActive ? "#ECFDF5" : "transparent" }}
                                   >
                                     {c.label}
                                     <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polyline points="9 18 15 12 9 6"/></svg>

@@ -6,7 +6,7 @@ const features = [
     title: "Analytical Testing",
     desc: "Perform precise chemical, biological, and physical analyses for reliable diagnostic results.",
     icon: (
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" height="52" width="52" fill="none" stroke="#134CF7" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" height="52" width="52" fill="none" stroke="#00B67A" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
         <path d="M16.5 11.5V16l-3.06 2.678a2.751 2.751 0 0 0 -0.94 2.071h0a2.75 2.75 0 0 0 2.749 2.751h5.5a2.75 2.75 0 0 0 2.75 -2.75h0a2.75 2.75 0 0 0 -0.939 -2.07L19.5 16v-4.5" />
         <path d="m12.59 21.446 2.043 -1.013a3.9 3.9 0 0 1 3.679 0.1h0a3.9 3.9 0 0 0 3.471 0.2l1.617 -0.713" />
         <path d="M10.5 20.5h-9a1 1 0 0 1 -1 -1v-15a1 1 0 0 1 1 -1h3" />
@@ -23,7 +23,7 @@ const features = [
     title: "Sample Analysis",
     desc: "Accurately examine and process blood, urine, and tissue samples for consistent, reliable results.",
     icon: (
-      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" height="52" width="52" fill="none" stroke="#134CF7" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" height="52" width="52" fill="none" stroke="#00B67A" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
         <path d="M6.762 6.15a5.951 5.951 0 0 1 -2.608 0.521 0.5 0.5 0 0 0 -0.466 0.7l2.582 5.741a0.494 0.494 0 0 0 0.831 0.115 5.936 5.936 0 0 1 2.121 -1.6l9.652 -4.339a3.075 3.075 0 0 0 1.8 -3.447 3 3 0 0 0 -4.158 -2.072Z" />
         <path d="M7.249 20.5a2 2 0 0 1 -4 0c0 -0.79 1.023 -2.24 1.605 -3a0.5 0.5 0 0 1 0.789 0c0.583 0.76 1.606 2.21 1.606 3" />
         <path d="m8.945 11.747 -1.23 -2.736" />
@@ -37,7 +37,7 @@ const features = [
     title: "Molecular Research",
     desc: "Explore genes, proteins, and cellular processes with advanced clinical laboratory techniques.",
     icon: (
-      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" height="52" width="52" stroke="#134CF7" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" height="52" width="52" stroke="#00B67A" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
         <path strokeLinejoin="round" d="m8.80516 4.65601 4.57874 2.64354v5.28705l-4.57874 2.6436 -4.57876 -2.6436V7.29955z" />
         <path strokeLinejoin="round" d="m13.3957 12.5322 4.5788 2.6436v5.2871l-4.5788 2.6435 -4.57872 -2.6435v-5.2871z" />
         <path strokeLinejoin="round" d="m17.9863 4.65601 4.5788 2.64354v5.28705l-4.5788 2.6436 -4.5787 -2.6436V7.29955z" />

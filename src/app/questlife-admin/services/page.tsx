@@ -219,7 +219,7 @@ export default function AdminServicesPage() {
                     type="checkbox"
                     checked={form.featured}
                     onChange={(e) => setForm((p) => ({ ...p, featured: e.target.checked }))}
-                    className="w-4 h-4 accent-blue-600"
+                    className="w-4 h-4 accent-green-600"
                   />
                   <span className="text-sm font-medium text-slate-700">Featured</span>
                 </label>

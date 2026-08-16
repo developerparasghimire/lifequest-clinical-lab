@@ -118,7 +118,7 @@ export default function AdminTestimonialsPage() {
                 <label className="flex items-center gap-2 cursor-pointer">
                   <input type="checkbox" checked={form.active}
                     onChange={(e) => setForm((p) => ({ ...p, active: e.target.checked }))}
-                    className="w-4 h-4 accent-blue-600" />
+                    className="w-4 h-4 accent-green-600" />
                   <span className="text-sm font-medium text-slate-700">Active</span>
                 </label>
               </div>

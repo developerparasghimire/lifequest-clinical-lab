@@ -15,6 +15,7 @@ export default function NewBlogPostPage() {
     metaTitle: "",
     metaDescription: "",
     published: false,
+    latest: false,
   });
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState("");
@@ -156,19 +157,34 @@ export default function NewBlogPostPage() {
         </div>
 
         <div className="flex items-center justify-between bg-white rounded-2xl border border-slate-200 shadow-sm p-5">
-          <label className="flex items-center gap-3 cursor-pointer">
-            <input
-              type="checkbox"
-              name="published"
-              checked={form.published}
-              onChange={handleChange}
-              className="w-5 h-5 accent-blue-600"
-            />
-            <div>
-              <p className="font-medium text-slate-900">Publish immediately</p>
-              <p className="text-xs text-slate-400">Uncheck to save as draft</p>
-            </div>
-          </label>
+          <div className="flex items-center gap-6">
+            <label className="flex items-center gap-3 cursor-pointer">
+              <input
+                type="checkbox"
+                name="published"
+                checked={form.published}
+                onChange={handleChange}
+                className="w-5 h-5 accent-green-600"
+              />
+              <div>
+                <p className="font-medium text-slate-900">Publish immediately</p>
+                <p className="text-xs text-slate-400">Uncheck to save as draft</p>
+              </div>
+            </label>
+            <label className="flex items-center gap-3 cursor-pointer">
+              <input
+                type="checkbox"
+                name="latest"
+                checked={form.latest}
+                onChange={handleChange}
+                className="w-5 h-5 accent-green-600"
+              />
+              <div>
+                <p className="font-medium text-slate-900">Show on Home</p>
+                <p className="text-xs text-slate-400">Feature in homepage blog section (max 3)</p>
+              </div>
+            </label>
+          </div>
 
           <div className="flex gap-3">
             <button

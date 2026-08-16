@@ -4,16 +4,12 @@ import Reveal from "@/components/ui/Reveal";
 
 export default function FinalCTA() {
   return (
-    <section className="py-28 overflow-hidden relative" style={{ background: "linear-gradient(135deg, #020517 0%, #0c1f6e 55%, #134CF7 100%)" }}>
-      {/* Decorative glow orbs */}
-      <div className="absolute top-0 right-0 w-[500px] h-[500px] rounded-full pointer-events-none -translate-y-1/3 translate-x-1/4" style={{ background: "rgba(19,76,247,0.25)", filter: "blur(80px)" }} />
-      <div className="absolute bottom-0 left-0 w-[300px] h-[300px] rounded-full pointer-events-none translate-y-1/3 -translate-x-1/4" style={{ background: "rgba(96,165,250,0.15)", filter: "blur(60px)" }} />
-
+    <section className="py-20 overflow-hidden relative" style={{ background: "linear-gradient(135deg, #020517 0%, #071a3e 100%)" }}>
       {/* Subtle dot grid */}
       <div
-        className="absolute inset-0 pointer-events-none opacity-10"
+        className="absolute inset-0 pointer-events-none opacity-[0.06]"
         style={{
-          backgroundImage: "radial-gradient(circle, rgba(255,255,255,0.4) 1px, transparent 1px)",
+          backgroundImage: "radial-gradient(circle, rgba(255,255,255,0.6) 1px, transparent 1px)",
           backgroundSize: "28px 28px",
         }}
       />

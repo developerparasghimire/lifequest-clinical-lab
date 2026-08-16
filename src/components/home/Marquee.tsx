@@ -1,46 +1,57 @@
-const words = [
-  "Analysis",
-  "Laboratory",
-  "Research",
-  "Science",
-  "Diagnostics",
-  "Testing",
-  "Pathology",
-  "Hematology",
-];
+import { prisma } from "@/lib/prisma";
 
-export default function Marquee() {
+export default async function Marquee() {
+  const packages = await prisma.package.findMany({
+    where: { active: true },
+    select: { title: true },
+    orderBy: { order: "asc" },
+    take: 20,
+  });
+
+  const items = packages.length > 0
+    ? packages.map((p) => p.title)
+    : [
+        "General Health Check Up",
+        "Diabetes Care Package",
+        "Thyroid Profile",
+        "Full Body Checkup",
+        "Women's Health Panel",
+        "Cardiac Risk Profile",
+        "Vitamin D & B12",
+        "Liver Function Test",
+      ];
+
+  const doubled = [...items, ...items, ...items];
+
   return (
     <div
-      className="marquee-wrapper marquee-fade overflow-hidden py-5 border-y relative"
-      style={{ background: "linear-gradient(90deg,#0a35c8 0%,#134CF7 50%,#0a35c8 100%)", borderColor: "#134CF7" }}
+      className="marquee-wrapper overflow-hidden py-5 border-y relative"
+      style={{ background: "#fff", borderColor: "#E2E6F0" }}
     >
       <div
-        className="flex gap-10 whitespace-nowrap animate-marquee"
+        className="flex gap-0 whitespace-nowrap animate-marquee"
         style={{ width: "max-content" }}
       >
-        {[...words, ...words, ...words].map((word, i) => (
+        {doubled.map((name, i) => (
           <span
             key={i}
-            className="inline-flex items-center gap-10 text-sm font-semibold uppercase tracking-[0.2em] text-white"
+            className="inline-flex items-center gap-4 text-sm font-medium px-6"
+            style={{ color: "#5D6478" }}
           >
-            {word}
-            <svg
-              width="12"
-              height="12"
-              viewBox="0 0 14 14"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-              className="opacity-60 shrink-0"
+            {name}
+            <span
+              className="inline-flex items-center justify-center w-6 h-6 rounded-full shrink-0"
+              style={{ background: "#00B67A" }}
             >
-              <path
-                d="M7 0L8.55 5.45L14 7L8.55 8.55L7 14L5.45 8.55L0 7L5.45 5.45L7 0Z"
-                fill="white"
-              />
-            </svg>
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                <line x1="12" y1="5" x2="12" y2="19" />
+                <line x1="5" y1="12" x2="19" y2="12" />
+              </svg>
+            </span>
           </span>
         ))}
       </div>
     </div>
   );
 }
+

@@ -54,7 +54,7 @@ export default function FAQ({
         <Reveal className="text-center mb-12">
           <div className="lab-subtitle justify-center mb-4">{eyebrow}</div>
           <h2 className="text-4xl sm:text-5xl font-bold h-display" style={{ color: "#040B2F" }}>
-            {title} <span style={{ color: "#134CF7" }}>{highlight}</span>
+            {title} <span style={{ color: "#00B67A" }}>{highlight}</span>
           </h2>
           {description && (
             <p className="mt-5 text-base leading-relaxed max-w-2xl mx-auto" style={{ color: "#444" }}>

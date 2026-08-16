@@ -55,10 +55,9 @@ export default function ContactForm() {
         <label className="block text-sm font-semibold text-slate-700 mb-2" htmlFor="message">Message</label>
         <textarea id="message" name="message" rows={5} value={form.message} onChange={onChange} required
           placeholder="How can we help you?"
-          className="w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-slate-900 placeholder:text-slate-400 focus:border-blue-400 focus:ring-4 focus:ring-blue-100 focus:outline-none transition-all" />
+          className="w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-slate-900 placeholder:text-slate-400 focus:border-[#00B67A] focus:ring-4 focus:ring-[rgba(0,182,122,0.12)] focus:outline-none transition-all" />
       </div>
-      <button type="submit"
-        className="btn-shine w-full bg-gradient-to-r from-blue-600 to-cyan-500 text-white py-4 rounded-2xl font-bold text-lg hover:from-blue-500 hover:to-cyan-400 transition-all duration-300 shadow-lg hover:-translate-y-0.5">
+      <button type="submit" className="lab-btn btn-shine w-full justify-center py-4 rounded-2xl text-base font-bold">
         Send on WhatsApp →
       </button>
     </form>
@@ -73,7 +72,7 @@ function Input({ label, name, type = "text", value, onChange, required }: {
     <div>
       <label className="block text-sm font-semibold text-slate-700 mb-2" htmlFor={name}>{label}</label>
       <input id={name} name={name} type={type} value={value} onChange={onChange} required={required}
-        className="w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-slate-900 placeholder:text-slate-400 focus:border-blue-400 focus:ring-4 focus:ring-blue-100 focus:outline-none transition-all" />
+        className="w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-slate-900 placeholder:text-slate-400 focus:border-[#00B67A] focus:ring-4 focus:ring-[rgba(0,182,122,0.12)] focus:outline-none transition-all" />
     </div>
   );
 }

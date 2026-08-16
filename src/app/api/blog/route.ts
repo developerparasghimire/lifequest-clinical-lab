@@ -20,7 +20,7 @@ export async function POST(req: NextRequest) {
 
   try {
     const body = await req.json();
-    const { title, content, excerpt, image, metaTitle, metaDescription, published } = body;
+    const { title, content, excerpt, image, metaTitle, metaDescription, published, latest } = body;
 
     if (!title || !content) {
       return NextResponse.json({ success: false, error: "title and content are required" }, { status: 400 });
@@ -42,6 +42,7 @@ export async function POST(req: NextRequest) {
         metaTitle: metaTitle ? String(metaTitle).slice(0, 200) : null,
         metaDescription: metaDescription ? String(metaDescription).slice(0, 500) : null,
         published: Boolean(published),
+        latest: Boolean(latest),
       },
     });
     return NextResponse.json({ success: true, data: post }, { status: 201 });
