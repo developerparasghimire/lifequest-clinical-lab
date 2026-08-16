@@ -191,8 +191,8 @@ export default async function BlogPostPage({ params }: Props) {
                 <h3 className="font-bold mb-3 h-display" style={{ color: "#040B2F" }}>About Life Quest</h3>
                 <p className="text-sm leading-relaxed" style={{ color: "#444444" }}>
                   Life Quest Clinical Lab is a Nepal-based medical laboratory
-                  offering 529 tests with same-day reporting and home sample
-                  collection.
+                  offering 529+ diagnostic tests with fast, accurate results
+                  and home sample collection.
                 </p>
                 <Link
                   href="/about"

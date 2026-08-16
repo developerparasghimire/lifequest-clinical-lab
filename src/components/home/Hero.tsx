@@ -51,7 +51,7 @@ export default function Hero() {
           </h1>
 
           <p className="text-base leading-relaxed mb-10 max-w-lg" style={{ color: "rgba(255,255,255,0.70)" }}>
-            Precision diagnostics, same-day reports, and home sample collection
+            Precision diagnostics, fast accurate results, and home sample collection
             by expert pathologists — serving Nepal since 2021.
           </p>
 

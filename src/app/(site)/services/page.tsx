@@ -140,7 +140,7 @@ export default async function ServicesHubPage() {
 
               <p className="mb-10 leading-relaxed"
                 style={{ color: "rgba(255,255,255,0.58)", fontSize: "17px", maxWidth: "460px" }}>
-                Eight specialized departments, 529+ tests, and same-day reporting — delivered by NPHL-accredited pathologists across three branches in Nepal.
+                Eight specialized departments, 529+ tests, and rapid accurate results — delivered by NPHL-accredited pathologists across three branches in Nepal.
               </p>
 
               <div className="flex flex-wrap gap-4">
@@ -253,7 +253,7 @@ export default async function ServicesHubPage() {
                     </p>
                   </div>
                   <ul className="mt-7 space-y-2.5 flex-1">
-                    {["Same-day reporting", "Home sample collection", "Method & sample type listed"].map((f) => (
+                    {["Rapid result delivery", "Home sample collection", "Method & sample type listed"].map((f) => (
                       <li key={f} className="flex items-center gap-2.5 text-sm" style={{ color: "rgba(255,255,255,0.62)" }}>
                         <span className="w-5 h-5 rounded-full flex items-center justify-center shrink-0" style={{ background: "rgba(0,182,122,0.18)", color: "#00B67A" }}>
                           <Check />

@@ -49,7 +49,7 @@ const journey = [
   {
     year: "2025",
     title: "Global Reach",
-    desc: `Opened Udayapur (Gaighat) branch. Received IFCC PEP hosting recognition and launched first international online diagnostics. Now offering ${TOTAL_TESTS}+ tests with same-day reports.`,
+    desc: `Opened Udayapur (Gaighat) branch. Received IFCC PEP hosting recognition and launched first international online diagnostics. Now offering ${TOTAL_TESTS}+ tests with rapid, accurate reporting.`,
   },
 ];
 

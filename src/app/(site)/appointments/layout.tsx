@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Book Appointment Online · Life Quest Clinical Lab",
     description:
-      "Schedule your medical lab test in seconds. Same-day reporting and home sample collection available across Nepal.",
+      "Schedule your medical lab test in seconds. Fast, accurate results and home sample collection available across Nepal.",
     url: "/appointments",
     type: "website",
   },

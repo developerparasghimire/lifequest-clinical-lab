@@ -10,12 +10,12 @@ import FAQ from "@/components/ui/FAQ";
 export const metadata: Metadata = {
   title: "Life Quest Clinical Lab",
   description:
-    "Life Quest Clinical Lab — 529+ diagnostic tests, home sample collection, same-day reporting and three branches across Kathmandu, Birtamod and Gaighat.",
+    "Life Quest Clinical Lab — 529+ diagnostic tests, home sample collection, rapid accurate results and three branches across Kathmandu, Birtamod and Gaighat.",
   alternates: { canonical: "/" },
   openGraph: {
     title: "Life Quest Clinical Lab — Life Quest Clinical Lab",
     description:
-      "529+ diagnostic tests · 3 branches across Nepal · Home sample collection · Same-day reporting.",
+      "529+ diagnostic tests · 3 branches across Nepal · Home sample collection · Rapid accurate results.",
     url: "/",
     type: "website",
   },
