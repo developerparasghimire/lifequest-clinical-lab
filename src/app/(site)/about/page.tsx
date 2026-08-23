@@ -95,10 +95,10 @@ export default async function AboutPage() {
                 Nepal&apos;s Pioneer in Clinical Excellence
               </h2>
               <p className="text-base leading-relaxed mb-5" style={{ color: "#5D6478" }}>
-                Established in 2021, Life Quest Clinical Lab is an NPHL accredited independent laboratory located at Maharajgunj-03, Panipokhari, Kathmandu. We offer Molecular Pathology Services including NGS, FISH, and immunohistochemistry under one roof.
+                Established in 2021, Life Quest Clinical Lab was founded with a commitment to providing accurate, reliable, accessible, and quality-focused diagnostic services to patients and healthcare professionals. We have continuously expanded our diagnostic capabilities, technology, expertise, and reach — with a vision of contributing to better healthcare through dependable laboratory medicine.
               </p>
               <p className="text-base leading-relaxed mb-8" style={{ color: "#5D6478" }}>
-                From a single laboratory in Kathmandu, we have grown to three branches across Nepal, trusted by patients and healthcare providers alike for accuracy, speed, and compassionate care.
+                We believe that every laboratory result carries a responsibility. That is why we place strong emphasis on quality, accuracy, timely reporting, patient confidentiality, and continuous improvement at every stage — from sample collection and processing to analysis and reporting.
               </p>
               <Link
                 href="/about/who-we-are"

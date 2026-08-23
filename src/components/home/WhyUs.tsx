@@ -57,13 +57,15 @@ export default function WhyUs() {
           {/* Left: Content */}
           <Reveal direction="right">
             <p className="text-base leading-relaxed mb-4" style={{ color: "#5D6478" }}>
-              Life Quest Clinical Lab is a privately owned, independent clinical laboratory.
-              Established in 2021, it is a state-of-the-art NPHL accredited, Category &apos;A&apos;
-              laboratory providing quality and STAT services to hospitals, clinics, and patients.
+              Established in 2021, Life Quest Clinical Lab was founded with a commitment to providing
+              accurate, reliable, accessible, and quality-focused diagnostic services to patients and
+              healthcare professionals across Nepal.
             </p>
             <p className="text-base leading-relaxed mb-10" style={{ color: "#5D6478" }}>
-              We are the first in Nepal to provide Molecular Pathology Services under one roof,
-              ensuring accurate and timely results for every patient.
+              Our comprehensive diagnostic services encompass Biochemistry, Hematology, Microbiology,
+              Histopathology, Cytopathology, Immunology, Molecular Diagnostics, Genetic Testing, and
+              specialised laboratory investigations — supported by modern technology and trained
+              laboratory professionals.
             </p>
 
             {/* Capabilities list */}

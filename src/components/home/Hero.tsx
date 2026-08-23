@@ -51,8 +51,8 @@ export default function Hero() {
           </h1>
 
           <p className="text-base leading-relaxed mb-10 max-w-lg" style={{ color: "rgba(255,255,255,0.70)" }}>
-            Precision diagnostics, fast accurate results, and home sample collection
-            by expert pathologists — serving Nepal since 2021.
+            Precision in Every Test. Confidence in Every Result.
+            Where advanced laboratory technology meets clinical expertise — serving Nepal since 2021.
           </p>
 
           <div className="flex flex-wrap gap-4">
