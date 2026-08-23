@@ -26,7 +26,8 @@ export default function AdminLoginPage() {
     if (result?.error) {
       setError("Invalid email or password.");
     } else {
-      window.location.href = "https://lifequestclinicallab.com.np/questlife-admin";
+      const params = new URLSearchParams(window.location.search);
+      window.location.href = params.get("callbackUrl") || "/questlife-admin";
     }
   };
 

@@ -70,7 +70,7 @@ export default function AdminSidebar() {
         <button
           onClick={async () => {
             await signOut({ redirect: false });
-            window.location.href = "https://lifequestclinicallab.com.np/questlife-admin/login";
+            window.location.href = "/questlife-admin/login";
           }}
           className="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm text-red-400 hover:bg-red-900/30 hover:text-red-300 transition-colors"
         >
