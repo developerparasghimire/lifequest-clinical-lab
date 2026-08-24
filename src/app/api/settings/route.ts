@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { revalidatePath } from "next/cache";
+import { revalidatePath, revalidateTag } from "next/cache";
 import { auth } from "@/auth";
 import { prisma } from "@/lib/prisma";
 
@@ -31,6 +31,10 @@ export async function PUT(req: NextRequest) {
         })
       )
     );
+    // getSettings() is unstable_cache'd under the "settings" tag with a 60s
+    // window — without busting the tag, admin edits took up to a minute to
+    // appear on the site.
+    revalidateTag("settings", { expire: 0 });
     revalidatePath("/", "layout");
     return NextResponse.json({ success: true, count: entries.length });
   } catch {

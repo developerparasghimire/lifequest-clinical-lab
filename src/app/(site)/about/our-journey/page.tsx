@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { TOTAL_TESTS } from "@/data/services";
+import { getSettings } from "@/lib/cms";
 import Reveal, { RevealItem } from "@/components/ui/Reveal";
 
 export const metadata: Metadata = {
@@ -18,7 +19,8 @@ export const metadata: Metadata = {
   },
 };
 
-const stats = [
+/** Defaults used when a journey.statN.* setting is blank in the admin panel. */
+const STAT_DEFAULTS = [
   { value: `${TOTAL_TESTS}+`, label: "Diagnostic Tests" },
   { value: "3", label: "Branches in Nepal" },
   { value: "4+", label: "Years of Service" },
@@ -53,7 +55,16 @@ const journey = [
   },
 ];
 
-export default function OurJourneyPage() {
+export default async function OurJourneyPage() {
+  const settings = await getSettings();
+
+  // Editable from the admin panel under Settings → "About / Journey Statistics".
+  // A blank field falls back to the default so the strip is never half-empty.
+  const stats = STAT_DEFAULTS.map((d, i) => ({
+    value: settings[`journey.stat${i + 1}.value`]?.trim() || d.value,
+    label: settings[`journey.stat${i + 1}.label`]?.trim() || d.label,
+  }));
+
   return (
     <>
       {/* ── PAGE HEADER ── */}

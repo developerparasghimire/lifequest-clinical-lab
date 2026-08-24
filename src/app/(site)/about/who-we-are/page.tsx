@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { getSettings } from "@/lib/cms";
+import { getSettings, getTeamMembers } from "@/lib/cms";
 import Reveal, { RevealItem } from "@/components/ui/Reveal";
 
 export const metadata: Metadata = {
@@ -172,7 +172,7 @@ const whyChooseUs = [
 ];
 
 export default async function WhoWeArePage() {
-  const settings = await getSettings();
+  const [settings, team] = await Promise.all([getSettings(), getTeamMembers()]);
   const mission =
     settings["about.mission"] ||
     "Our laboratory's mission is to provide high quality laboratory services at reasonable prices in the shortest time possible, with the importance on quality and complete client contentment.";
@@ -338,7 +338,8 @@ export default async function WhoWeArePage() {
         </div>
       </section>
 
-      {/* ── LEADERSHIP ── */}
+      {/* ── LEADERSHIP — managed from the admin panel (Team) ── */}
+      {team.length > 0 && (
       <section className="py-16 overflow-hidden bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <Reveal className="mb-12">
@@ -347,52 +348,40 @@ export default async function WhoWeArePage() {
               The Team Behind Life Quest
             </h2>
           </Reveal>
-          <Reveal stagger staggerGap={0.1} className="grid grid-cols-1 md:grid-cols-3 gap-7">
-            {[
-              {
-                photo: "/team/rakesh-pokhrel.jpg",
-                name: "Rakesh Pokhrel",
-                role: "Managing Director / Founder",
-                quals: ["MSc. Clinical Biochemistry, IOM", "MSc. Total Quality Management"],
-                message: "At Life Quest, our mission is to empower better healthcare through precision, reliability, and affordability. Quality is not just a goal — it's our promise.",
-              },
-              {
-                photo: "/team/prem-raj-pokhrel.jpg",
-                name: "Prem Raj Pokhrel",
-                role: "Executive Director / Co-founder",
-                quals: [],
-                message: "Our mission is to provide precise, timely, and reliable diagnostic services with a commitment to excellence. Your health and satisfaction are our top priorities.",
-              },
-              {
-                photo: "/team/dr-deliya-paudel.jpg",
-                name: "Dr. Deliya Paudel",
-                role: "Consultant Pathologist / Lab Head",
-                quals: [],
-                message: "Quality is at the heart of everything we do. Our stringent quality control ensures the highest standards of accuracy, reliability, and precision in every test.",
-              },
-            ].map((l) => (
-              <RevealItem key={l.name}>
+          <Reveal stagger staggerGap={0.1} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-7">
+            {team.map((l) => (
+              <RevealItem key={l.id}>
                 <div className="rounded-2xl overflow-hidden h-full bg-white" style={{ border: "1px solid #E2E6F0" }}>
-                  <div className="relative w-full" style={{ height: "220px" }}>
-                    <Image
-                      src={l.photo}
-                      alt={l.name}
-                      fill
-                      sizes="(max-width: 768px) 100vw, 33vw"
-                      className="object-cover object-top"
-                    />
+                  <div className="relative w-full bg-slate-100" style={{ height: "220px" }}>
+                    {l.photo ? (
+                      <Image
+                        src={l.photo}
+                        alt={l.name}
+                        fill
+                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                        className="object-cover object-top"
+                      />
+                    ) : (
+                      <div
+                        className="absolute inset-0 flex items-center justify-center text-4xl font-black"
+                        style={{ color: "#00B67A", background: "#DCFCE7" }}
+                      >
+                        {l.name
+                          .split(/\s+/)
+                          .slice(0, 2)
+                          .map((s) => s[0]?.toUpperCase())
+                          .join("")}
+                      </div>
+                    )}
                   </div>
                   <div className="p-7">
                     <h3 className="text-lg font-bold mb-1" style={{ color: "#040B2F" }}>{l.name}</h3>
                     <p className="text-sm font-semibold mb-3" style={{ color: "#00B67A" }}>{l.role}</p>
-                    {l.quals.length > 0 && (
-                      <div className="mb-4 space-y-0.5">
-                        {l.quals.map((q) => (
-                          <p key={q} className="text-xs" style={{ color: "#5D6478" }}>{q}</p>
-                        ))}
-                      </div>
+                    {l.bio && (
+                      <p className="text-sm leading-relaxed italic" style={{ color: "#5D6478" }}>
+                        &ldquo;{l.bio}&rdquo;
+                      </p>
                     )}
-                    <p className="text-sm leading-relaxed italic" style={{ color: "#5D6478" }}>&ldquo;{l.message}&rdquo;</p>
                   </div>
                 </div>
               </RevealItem>
@@ -400,6 +389,7 @@ export default async function WhoWeArePage() {
           </Reveal>
         </div>
       </section>
+      )}
 
       {/* ── MISSION & VISION ── */}
       <section className="py-16 overflow-hidden bg-white">

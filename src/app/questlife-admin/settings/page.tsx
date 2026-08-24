@@ -51,6 +51,19 @@ const FIELD_GROUPS: { title: string; fields: { key: string; label: string; type?
     ],
   },
   {
+    title: "About / Journey Statistics",
+    fields: [
+      { key: "journey.stat1.value", label: "Stat 1 — Number", placeholder: "526+" },
+      { key: "journey.stat1.label", label: "Stat 1 — Label",  placeholder: "Diagnostic Tests" },
+      { key: "journey.stat2.value", label: "Stat 2 — Number", placeholder: "3" },
+      { key: "journey.stat2.label", label: "Stat 2 — Label",  placeholder: "Branches in Nepal" },
+      { key: "journey.stat3.value", label: "Stat 3 — Number", placeholder: "4+" },
+      { key: "journey.stat3.label", label: "Stat 3 — Label",  placeholder: "Years of Service" },
+      { key: "journey.stat4.value", label: "Stat 4 — Number", placeholder: "NPHL" },
+      { key: "journey.stat4.label", label: "Stat 4 — Label",  placeholder: "Accredited Lab" },
+    ],
+  },
+  {
     title: "Social Links",
     fields: [
       { key: "social.facebook",  label: "Facebook URL",  type: "url", placeholder: "https://www.facebook.com/lifequestclinicallab" },

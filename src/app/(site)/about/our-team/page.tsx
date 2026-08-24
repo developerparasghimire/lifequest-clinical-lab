@@ -61,7 +61,7 @@ export default async function OurTeamPage() {
               >
                 <div className="w-28 h-28 rounded-full overflow-hidden mb-5 shrink-0" style={{ border: "3px solid #00B67A" }}>
                   <Image
-                    src="/uploads/team/DSC00021.jpg"
+                    src="/team/rakesh-pokhrel.jpg"
                     alt="Rakesh Pokhrel — Managing Director & Founder"
                     width={112}
                     height={112}
