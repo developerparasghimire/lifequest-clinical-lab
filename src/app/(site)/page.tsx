@@ -3,7 +3,6 @@ import Hero from "@/components/home/Hero";
 import HomeCollection from "@/components/home/HomeCollection";
 import WhyUs from "@/components/home/WhyUs";
 import StatsStrip from "@/components/home/StatsStrip";
-import BranchesSection from "@/components/home/BranchesSection";
 import NepalMap from "@/components/home/NepalMap";
 import BlogSection from "@/components/home/BlogSection";
 import FAQ from "@/components/ui/FAQ";
@@ -37,16 +36,13 @@ export default function HomePage() {
       {/* 4. Stats strip */}
       <StatsStrip />
 
-      {/* 5. Branches — "We Are Right Next to You" */}
-      <BranchesSection />
-
-      {/* 6. Nepal map — branch locations */}
+      {/* 5. Nepal map — branch locations */}
       <NepalMap />
 
-      {/* 7. Blog — Latest Articles */}
+      {/* 6. Blog — Latest Articles */}
       <BlogSection />
 
-      {/* 8. FAQ */}
+      {/* 7. FAQ */}
       <FAQ />
     </>
   );
