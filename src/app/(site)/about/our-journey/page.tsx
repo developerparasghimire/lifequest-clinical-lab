@@ -231,37 +231,42 @@ export default async function OurJourneyPage() {
           </Reveal>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
-            {/* Welcome photo */}
+            {/* Both photos are portrait 1200x1600 — aspect-[3/4] matches the
+                source exactly, so nothing is cropped away. */}
             <Reveal direction="right">
-              <div className="relative rounded-2xl overflow-hidden" style={{ height: "360px" }}>
-                <Image
-                  src="/IFCC/IMG-20250401-WA0011.jpg"
-                  alt="Ms. Laura Gomez Martinez welcomed by the Life Quest team"
-                  fill
-                  sizes="(max-width: 1024px) 100vw, 50vw"
-                  className="object-cover"
-                />
-                <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(4,11,47,0.75) 0%, transparent 55%)" }} />
-                <div className="absolute bottom-0 left-0 right-0 p-6">
-                  <p className="text-white font-semibold text-sm">Ms. Laura Gomez Martinez welcomed at Life Quest</p>
-                  <p className="text-xs mt-1" style={{ color: "rgba(255,255,255,0.65)" }}>Hospital Clínico San Carlos, Madrid, Spain</p>
-                </div>
+              <div className="grid grid-cols-2 gap-4">
+                {[
+                  {
+                    src: "/IFCC/IMG-20250401-WA0011.jpg",
+                    alt: "Ms. Laura Gomez Martinez welcomed by the Life Quest team",
+                  },
+                  {
+                    src: "/IFCC/IMG-20250410-WA0007.jpg",
+                    alt: "Ms. Laura Gomez Martinez working in the Life Quest lab",
+                  },
+                ].map((img) => (
+                  <div
+                    key={img.src}
+                    className="relative rounded-2xl overflow-hidden aspect-[3/4]"
+                    style={{ background: "rgba(255,255,255,0.04)" }}
+                  >
+                    <Image
+                      src={img.src}
+                      alt={img.alt}
+                      fill
+                      sizes="(max-width: 1024px) 50vw, 25vw"
+                      className="object-cover"
+                    />
+                  </div>
+                ))}
               </div>
+              <p className="text-xs mt-3" style={{ color: "rgba(255,255,255,0.6)" }}>
+                Ms. Laura Gomez Martinez · Hospital Clínico San Carlos, Madrid, Spain
+              </p>
             </Reveal>
 
-            {/* Lab photo + quote */}
+            {/* Quote */}
             <div className="flex flex-col gap-6">
-              <Reveal direction="left" delay={0.1}>
-                <div className="relative rounded-2xl overflow-hidden" style={{ height: "180px" }}>
-                  <Image
-                    src="/IFCC/IMG-20250410-WA0007.jpg"
-                    alt="Laura working in the Life Quest lab"
-                    fill
-                    sizes="(max-width: 1024px) 100vw, 50vw"
-                    className="object-cover"
-                  />
-                </div>
-              </Reveal>
               <Reveal direction="left" delay={0.15}>
                 <div className="rounded-2xl p-7" style={{ background: "rgba(0,182,122,0.12)", border: "1px solid rgba(0,182,122,0.25)" }}>
                   <svg width="28" height="20" viewBox="0 0 32 22" fill="none" className="mb-4">

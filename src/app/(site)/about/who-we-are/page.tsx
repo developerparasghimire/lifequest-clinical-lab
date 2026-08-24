@@ -549,7 +549,8 @@ export default async function WhoWeArePage() {
               </Link>
             </Reveal>
             <Reveal direction="left" delay={0.1}>
-              <div className="relative rounded-2xl overflow-hidden" style={{ height: "320px" }}>
+              {/* Source is portrait 1200x1600 — aspect-[3/4] shows the full frame. */}
+              <div className="relative rounded-2xl overflow-hidden aspect-[3/4] max-w-[380px] mx-auto lg:ml-auto lg:mr-0">
                 <Image
                   src="/IFCC/IMG-20250401-WA0011.jpg"
                   alt="Ms. Laura Gomez Martinez welcomed by the Life Quest team"

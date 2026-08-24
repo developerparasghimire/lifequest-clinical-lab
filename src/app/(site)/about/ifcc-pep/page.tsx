@@ -122,7 +122,9 @@ export default function IfccPepPage() {
 
             {/* Welcome / group photo */}
             <Reveal direction="left" delay={0.1}>
-              <div className="relative rounded-3xl overflow-hidden" style={{ height: "480px" }}>
+              {/* Source is portrait 1200x1600 — aspect-[3/4] keeps the whole
+                  frame visible instead of cropping heads and feet away. */}
+              <div className="relative rounded-3xl overflow-hidden aspect-[3/4] max-w-[420px] mx-auto lg:mx-0">
                 <Image
                   src="/IFCC/IMG-20250401-WA0011.jpg"
                   alt="Ms. Laura Gomez Martinez welcomed by the Life Quest Clinical Lab team"
@@ -153,7 +155,9 @@ export default function IfccPepPage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 items-center">
             {/* Lab photo */}
             <Reveal direction="right">
-              <div className="relative rounded-3xl overflow-hidden" style={{ height: "480px" }}>
+              {/* Source is portrait 1200x1600 — aspect-[3/4] keeps the whole
+                  frame visible instead of cropping heads and feet away. */}
+              <div className="relative rounded-3xl overflow-hidden aspect-[3/4] max-w-[420px] mx-auto lg:mx-0">
                 <Image
                   src="/IFCC/IMG-20250410-WA0007.jpg"
                   alt="Ms. Laura working in the Life Quest Clinical Lab laboratory"
