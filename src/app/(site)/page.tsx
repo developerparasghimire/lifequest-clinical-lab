@@ -4,6 +4,7 @@ import HomeCollection from "@/components/home/HomeCollection";
 import WhyUs from "@/components/home/WhyUs";
 import StatsStrip from "@/components/home/StatsStrip";
 import BranchesSection from "@/components/home/BranchesSection";
+import NepalMap from "@/components/home/NepalMap";
 import BlogSection from "@/components/home/BlogSection";
 import FAQ from "@/components/ui/FAQ";
 
@@ -13,7 +14,7 @@ export const metadata: Metadata = {
     "Life Quest Clinical Lab — 529+ diagnostic tests, home sample collection, rapid accurate results and three branches across Kathmandu, Birtamod and Gaighat.",
   alternates: { canonical: "/" },
   openGraph: {
-    title: "Life Quest Clinical Lab — Life Quest Clinical Lab",
+    title: "Life Quest Clinical Lab",
     description:
       "529+ diagnostic tests · 3 branches across Nepal · Home sample collection · Rapid accurate results.",
     url: "/",
@@ -39,10 +40,13 @@ export default function HomePage() {
       {/* 5. Branches — "We Are Right Next to You" */}
       <BranchesSection />
 
-      {/* 6. Blog — Latest Articles */}
+      {/* 6. Nepal map — branch locations */}
+      <NepalMap />
+
+      {/* 7. Blog — Latest Articles */}
       <BlogSection />
 
-      {/* 7. FAQ */}
+      {/* 8. FAQ */}
       <FAQ />
     </>
   );
