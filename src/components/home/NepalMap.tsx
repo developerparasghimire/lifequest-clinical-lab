@@ -97,9 +97,12 @@ const locations = [
     district: "Kathmandu",
     tag: "Main Branch",
     phone: "+977-1-4002747",
-    mapUrl: "https://maps.google.com/?q=Panipokhari+Kathmandu",
-    x: 517.1,
-    y: 307.8,
+    // Verified head-office listing — opens driving directions to the lab.
+    // Coordinates below are this pin's exact location: 27.7301249, 85.3256245
+    mapUrl:
+      "https://www.google.com/maps/dir//LIFE+QUEST+CLINICAL+LAB,+Lazimpat+Sadak,+Kathmandu+44600/@27.6696826,85.3446311,15z/data=!4m8!4m7!1m0!1m5!1m1!1s0x39eb19385f76a673:0x48499bb0019851ca!2m2!1d85.3256245!2d27.7301249!5m1!1e1",
+    x: 517.2,
+    y: 306.3,
     anchor: "middle" as const,
     dx: 0,
     main: true,
