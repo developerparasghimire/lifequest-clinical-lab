@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Reveal, { RevealItem } from "@/components/ui/Reveal";
 import { prisma } from "@/lib/prisma";
+import { TOTAL_TESTS } from "@/data/services";
 
 export const metadata: Metadata = {
   title: "Services — Lab Tests & Packages",
@@ -15,15 +16,104 @@ export const metadata: Metadata = {
   },
 };
 
-const DEPT_CHIPS = [
-  { name: "Biochemistry & Immunology", color: "#60A5FA" },
-  { name: "Hematology",                color: "#F87171" },
-  { name: "Microbiology",              color: "#C084FC" },
-  { name: "Histopathology",            color: "#FBBF24" },
-  { name: "Cytopathology",             color: "#F472B6" },
-  { name: "Molecular Diagnostics",     color: "#22D3EE" },
-  { name: "Immunofluorescence",        color: "#34D399" },
-  { name: "Next Gen Sequencing",       color: "#818CF8" },
+/**
+ * The eight laboratory departments — single source of truth. Both the hero
+ * chips and the "What We Do" cards below read from this list, so the two
+ * can never drift apart.
+ */
+const DEPARTMENTS = [
+  {
+    name: "Biochemistry & Immunology",
+    short: "Biochemistry & Immunology",
+    color: "#60A5FA",
+    desc: "Blood chemistry that shows how your organs are working — liver and kidney panels, glucose, lipids, electrolytes and enzymes — together with immunological markers used to investigate autoimmune and inflammatory conditions.",
+    icon: (
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M10 2v7.527a2 2 0 0 1-.211.896L4.72 19.1a1 1 0 0 0 .9 1.9h12.76a1 1 0 0 0 .9-1.9l-5.069-8.677A2 2 0 0 1 14 9.527V2"/>
+        <path d="M8.5 2h7"/><path d="M7 16h10"/>
+      </svg>
+    ),
+  },
+  {
+    name: "Hematology",
+    short: "Hematology",
+    color: "#F87171",
+    desc: "Examination of blood cells and clotting — complete blood counts, ESR, peripheral smears and coagulation profiles used to detect anaemia, infection, bleeding disorders and blood cancers.",
+    icon: (
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M12 2a10 10 0 1 0 10 10"/><path d="M12 2v10l4.24 4.24"/>
+      </svg>
+    ),
+  },
+  {
+    name: "Microbiology",
+    short: "Microbiology",
+    color: "#C084FC",
+    desc: "Identification of bacteria, fungi and parasites behind an infection. Cultures with antibiotic sensitivity testing, Gram stains and AFB microscopy help your doctor choose a targeted treatment.",
+    icon: (
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+        <circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="4"/>
+        <line x1="4.93" y1="4.93" x2="9.17" y2="9.17"/><line x1="14.83" y1="14.83" x2="19.07" y2="19.07"/>
+        <line x1="14.83" y1="9.17" x2="19.07" y2="4.93"/><line x1="4.93" y1="19.07" x2="9.17" y2="14.83"/>
+      </svg>
+    ),
+  },
+  {
+    name: "Histopathology",
+    short: "Histopathology",
+    color: "#FBBF24",
+    desc: "Microscopic study of tissue taken at biopsy or surgery. Our pathologists process, section and stain the sample to diagnose cancers and inflammatory disease, and to report tumour type and grade.",
+    icon: (
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+        <rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/>
+      </svg>
+    ),
+  },
+  {
+    name: "Cytopathology",
+    short: "Cytopathology",
+    color: "#F472B6",
+    desc: "Study of individual cells rather than whole tissue. Pap smears, fine-needle aspiration (FNAC) and fluid cytology allow early detection of malignancy from a minimally invasive sample.",
+    icon: (
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+        <circle cx="12" cy="12" r="10"/><path d="M8 12h8"/><path d="M12 8v8"/>
+      </svg>
+    ),
+  },
+  {
+    name: "Molecular Diagnostics",
+    short: "Molecular Diagnostics",
+    color: "#22D3EE",
+    desc: "Testing at the level of DNA and RNA. Real-time PCR, genotyping and mutation analysis for infectious agents, inherited conditions and the marker testing that guides targeted cancer therapy.",
+    icon: (
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M2 12s4-8 10-8 10 8 10 8-4 8-10 8-10-8-10-8z"/><circle cx="12" cy="12" r="3"/>
+      </svg>
+    ),
+  },
+  {
+    name: "Immunofluorescence",
+    short: "Immunofluorescence",
+    color: "#34D399",
+    desc: "Fluorescent-labelled antibodies used to locate specific proteins in tissue and serum — central to diagnosing autoimmune skin and kidney disease and neurological autoantibody syndromes.",
+    icon: (
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+        <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+      </svg>
+    ),
+  },
+  {
+    name: "Next Generation Sequencing",
+    short: "Next Gen Sequencing",
+    color: "#818CF8",
+    desc: "High-throughput sequencing that reads many genes at once, supporting comprehensive cancer panels, inherited disease testing and carrier screening from a single sample.",
+    icon: (
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M18 10h-4V6"/><path d="M6 14h4v4"/><path d="M3 3l7 7"/>
+        <path d="M21 21l-7-7"/><path d="M21 3l-7 7"/><path d="M3 21l7-7"/>
+      </svg>
+    ),
+  },
 ];
 
 const PROCESS_STEPS = [
@@ -140,7 +230,7 @@ export default async function ServicesHubPage() {
 
               <p className="mb-10 leading-relaxed"
                 style={{ color: "rgba(255,255,255,0.58)", fontSize: "17px", maxWidth: "460px" }}>
-                Eight specialized departments, 529+ tests, and rapid accurate results — delivered by NPHL-accredited pathologists across three branches in Nepal.
+                Eight specialized departments, 526+ tests, and rapid accurate results — delivered by NPHL-accredited pathologists across three branches in Nepal.
               </p>
 
               <div className="flex flex-wrap gap-4">
@@ -158,7 +248,7 @@ export default async function ServicesHubPage() {
               <div className="flex flex-wrap gap-8 mt-12 pt-10"
                 style={{ borderTop: "1px solid rgba(255,255,255,0.08)" }}>
                 {[
-                  { v: "529+", l: "Diagnostic Tests" },
+                  { v: "526+", l: "Diagnostic Tests" },
                   { v: "3",    l: "Branches in Nepal" },
                   { v: "NPHL", l: "Accredited" },
                 ].map((s) => (
@@ -172,7 +262,7 @@ export default async function ServicesHubPage() {
 
             {/* ── Right: Department chips ── */}
             <div className="hidden lg:flex flex-col gap-2">
-              {DEPT_CHIPS.map((d, i) => (
+              {DEPARTMENTS.map((d, i) => (
                 <div key={d.name}
                   className="flex items-center gap-3 px-4 py-3.5 rounded-2xl"
                   style={{
@@ -183,7 +273,7 @@ export default async function ServicesHubPage() {
                     WebkitBackdropFilter: "blur(12px)",
                   }}>
                   <span className="w-2.5 h-2.5 rounded-full shrink-0" style={{ background: d.color }} />
-                  <span className="text-sm font-medium" style={{ color: "rgba(255,255,255,0.80)" }}>{d.name}</span>
+                  <span className="text-sm font-medium" style={{ color: "rgba(255,255,255,0.80)" }}>{d.short}</span>
                 </div>
               ))}
               <div className="mt-2 px-5 py-3 rounded-2xl text-center"
@@ -191,7 +281,7 @@ export default async function ServicesHubPage() {
                   background: "rgba(0,182,122,0.10)",
                   border: "1px solid rgba(0,182,122,0.22)",
                 }}>
-                <span className="text-sm font-semibold" style={{ color: "#00B67A" }}>529+ tests across all departments</span>
+                <span className="text-sm font-semibold" style={{ color: "#00B67A" }}>{TOTAL_TESTS}+ tests across all departments</span>
               </div>
             </div>
           </div>
@@ -205,6 +295,54 @@ export default async function ServicesHubPage() {
             <span>/</span>
             <span style={{ color: "rgba(255,255,255,0.60)" }}>Services</span>
           </nav>
+        </div>
+      </section>
+
+      {/* ─────────────────── WHAT WE DO ─────────────────── */}
+      <section className="py-24" style={{ background: "#ffffff" }}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <Reveal className="max-w-3xl mb-14">
+            <p className="lab-subtitle mb-4">What We Do</p>
+            <h2 className="h-display text-3xl sm:text-4xl mb-4" style={{ color: "#040B2F" }}>
+              Our Diagnostic Services
+            </h2>
+            <p className="text-base leading-relaxed" style={{ color: "#5D6478" }}>
+              Life Quest runs eight specialised departments under one roof, from routine blood
+              chemistry to next generation sequencing — so most investigations your doctor orders
+              can be completed in a single laboratory, by one team, to one standard.
+            </p>
+          </Reveal>
+
+          <Reveal stagger staggerGap={0.07} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {DEPARTMENTS.map((d) => (
+              <RevealItem key={d.name}>
+                <div
+                  className="rounded-2xl p-7 h-full flex flex-col transition-shadow hover:shadow-lg"
+                  style={{ background: "#ffffff", border: "1px solid #E2E6F0" }}
+                >
+                  <div
+                    className="w-12 h-12 rounded-xl flex items-center justify-center mb-5 shrink-0"
+                    style={{ background: `${d.color}1A`, color: d.color }}
+                  >
+                    {d.icon}
+                  </div>
+                  <h3 className="text-base font-bold mb-2.5" style={{ color: "#040B2F" }}>
+                    {d.name}
+                  </h3>
+                  <p className="text-sm leading-relaxed" style={{ color: "#5D6478" }}>
+                    {d.desc}
+                  </p>
+                </div>
+              </RevealItem>
+            ))}
+          </Reveal>
+
+          <Reveal className="mt-12 text-center">
+            <Link href="/services/lab-tests" className="lab-btn inline-flex items-center gap-2">
+              Browse all {TOTAL_TESTS}+ tests
+              <ArrowRight />
+            </Link>
+          </Reveal>
         </div>
       </section>
 
@@ -249,7 +387,7 @@ export default async function ServicesHubPage() {
                     <div className="text-xs font-bold uppercase tracking-widest mb-2" style={{ color: "#00B67A" }}>Individual Tests</div>
                     <h3 className="text-white h-display text-2xl sm:text-3xl mb-3">Lab Tests</h3>
                     <p className="text-sm leading-relaxed" style={{ color: "rgba(255,255,255,0.52)" }}>
-                      Search 529+ diagnostic tests by name, method or sample type. View price, turnaround, and book in seconds.
+                      Search 526+ diagnostic tests by name, method or sample type. View price, turnaround, and book in seconds.
                     </p>
                   </div>
                   <ul className="mt-7 space-y-2.5 flex-1">
@@ -264,7 +402,7 @@ export default async function ServicesHubPage() {
                   </ul>
                   <div className="flex items-center justify-between mt-8 pt-6"
                     style={{ borderTop: "1px solid rgba(255,255,255,0.07)" }}>
-                    <span className="text-sm font-semibold" style={{ color: "#00B67A" }}>Browse all 529+ tests</span>
+                    <span className="text-sm font-semibold" style={{ color: "#00B67A" }}>Browse all 526+ tests</span>
                     <span
                       className="w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300 group-hover:bg-[#00B67A] group-hover:border-[#00B67A]"
                       style={{ border: "1px solid rgba(255,255,255,0.15)", color: "rgba(255,255,255,0.65)" }}>

@@ -5,7 +5,7 @@ const SITE_URL =
   process.env.NEXT_PUBLIC_SITE_URL || "https://lifequestclinicallab.com.np";
 const SITE_NAME = "Life Quest Clinical Lab";
 const SITE_DESCRIPTION =
-  "Life Quest Clinical Lab offers 529+ diagnostic tests across biochemistry, hematology, hormones, immunology, microbiology, molecular diagnostics and histopathology. Three branches in Kathmandu, Birtamod and Gaighat with home sample collection and rapid, accurate result delivery.";
+  "Life Quest Clinical Lab offers 526+ diagnostic tests across biochemistry, hematology, hormones, immunology, microbiology, molecular diagnostics and histopathology. Three branches in Kathmandu, Birtamod and Gaighat with home sample collection and rapid, accurate result delivery.";
 const OG_IMAGE = "/logo.png";
 
 export const viewport: Viewport = {

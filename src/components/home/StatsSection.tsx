@@ -3,7 +3,7 @@ import Counter from "@/components/ui/Counter";
 import Reveal, { RevealItem } from "@/components/ui/Reveal";
 
 const stats: { value: number; suffix: string; compact?: boolean; label: string }[] = [
-  { value: 529,   suffix: "+", label: "Lab Tests Available" },
+  { value: 526,   suffix: "+", label: "Lab Tests Available" },
   { value: 50000, suffix: "+", compact: true, label: "Patients Served" },
   { value: 3,     suffix: "",  label: "Branches in Nepal" },
   { value: 10,    suffix: "+", label: "Years Experience" },
