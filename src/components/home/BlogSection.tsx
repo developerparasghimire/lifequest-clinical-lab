@@ -3,13 +3,41 @@ import { prisma } from "@/lib/prisma";
 import Reveal from "@/components/ui/Reveal";
 import BlogSlider from "@/components/home/BlogSlider";
 
+const SELECT = {
+  id: true,
+  title: true,
+  slug: true,
+  excerpt: true,
+  createdAt: true,
+  image: true,
+} as const;
+
 export default async function BlogSection() {
-  const posts = await prisma.blog.findMany({
+  // Posts the admin ticked "Show on Home" for, newest first.
+  const featured = await prisma.blog.findMany({
     where: { published: true, latest: true },
     orderBy: { createdAt: "desc" },
     take: 3,
-    select: { id: true, title: true, slug: true, excerpt: true, createdAt: true, image: true },
+    select: SELECT,
   });
+
+  // Back-fill with the newest published posts so the row always shows
+  // three, even when fewer than three are ticked in the admin panel.
+  const posts =
+    featured.length >= 3
+      ? featured
+      : [
+          ...featured,
+          ...(await prisma.blog.findMany({
+            where: {
+              published: true,
+              id: { notIn: featured.map((p) => p.id) },
+            },
+            orderBy: { createdAt: "desc" },
+            take: 3 - featured.length,
+            select: SELECT,
+          })),
+        ];
 
   if (posts.length === 0) return null;
 
