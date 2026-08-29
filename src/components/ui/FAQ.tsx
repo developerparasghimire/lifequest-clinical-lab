@@ -48,8 +48,30 @@ export default function FAQ({
   description = "Quick answers to the things people ask us most. Can’t find what you need? Our team is happy to help.",
   className,
 }: FAQProps) {
+  // FAQPage structured data — this is what earns the expandable Q&A block
+  // under the search result. Built from the same items that render below,
+  // so the markup can never disagree with the visible content.
+  const faqLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: items.map((it) => ({
+      "@type": "Question",
+      name: it.q,
+      acceptedAnswer: { "@type": "Answer", text: it.a },
+    })),
+  };
+
   return (
     <section className={`py-24 bg-white ${className ?? ""}`}>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(faqLd)
+            .replace(/</g, "\\u003c")
+            .replace(/>/g, "\\u003e")
+            .replace(/&/g, "\\u0026"),
+        }}
+      />
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         <Reveal className="text-center mb-12">
           <div className="lab-subtitle justify-center mb-4">{eyebrow}</div>

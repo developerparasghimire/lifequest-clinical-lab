@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { revalidatePath } from "next/cache";
+import { revalidatePath, revalidateTag } from "next/cache";
 import { auth } from "@/auth";
 import { prisma } from "@/lib/prisma";
 
@@ -38,6 +38,7 @@ export async function PATCH(req: NextRequest, { params }: RouteParams) {
         ...(b.active !== undefined && { active: Boolean(b.active) }),
       },
     });
+    revalidateTag("branches", { expire: 0 });
     revalidatePath("/", "layout");
     return NextResponse.json({ success: true, data: updated });
   } catch {
@@ -51,6 +52,7 @@ export async function DELETE(_req: NextRequest, { params }: RouteParams) {
   const { id } = await params;
   try {
     await prisma.branch.delete({ where: { id } });
+    revalidateTag("branches", { expire: 0 });
     revalidatePath("/", "layout");
     return NextResponse.json({ success: true });
   } catch {

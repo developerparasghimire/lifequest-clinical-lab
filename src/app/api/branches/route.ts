@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { revalidatePath } from "next/cache";
+import { revalidatePath, revalidateTag } from "next/cache";
 import { auth } from "@/auth";
 import { prisma } from "@/lib/prisma";
 
@@ -34,6 +34,7 @@ export async function POST(req: NextRequest) {
         active: active === undefined ? true : Boolean(active),
       },
     });
+    revalidateTag("branches", { expire: 0 });
     revalidatePath("/", "layout");
     return NextResponse.json({ success: true, data: item }, { status: 201 });
   } catch {

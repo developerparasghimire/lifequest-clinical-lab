@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { revalidatePath } from "next/cache";
+import { revalidatePath, revalidateTag } from "next/cache";
 import { auth } from "@/auth";
 import { prisma } from "@/lib/prisma";
 
@@ -39,6 +39,7 @@ export async function POST(req: NextRequest) {
       update: data,
       create: { ...data, page: String(page).slice(0, 50) },
     });
+    revalidateTag("banners", { expire: 0 });
     revalidatePath("/", "layout");
     return NextResponse.json({ success: true, data: banner }, { status: 201 });
   } catch {
