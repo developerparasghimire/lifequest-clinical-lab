@@ -5,6 +5,18 @@ import { prisma } from "@/lib/prisma";
 
 interface RouteParams { params: Promise<{ id: string }> }
 
+export async function GET(_req: NextRequest, { params }: RouteParams) {
+  const { id } = await params;
+  try {
+    const item = await prisma.banner.findUnique({ where: { id } });
+    if (!item) return NextResponse.json({ success: false, error: "Not found" }, { status: 404 });
+    return NextResponse.json({ success: true, data: item });
+  } catch (e) {
+    console.error("[banner GET id]", e);
+    return NextResponse.json({ success: false, error: "Failed to fetch banner" }, { status: 500 });
+  }
+}
+
 export async function PATCH(req: NextRequest, { params }: RouteParams) {
   const session = await auth();
   if (!session) return NextResponse.json({ success: false, error: "Unauthorized" }, { status: 401 });

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import Reveal, { RevealItem } from "@/components/ui/Reveal";
+import Reveal from "@/components/ui/Reveal";
 
 export const metadata: Metadata = {
   title: "IFCC",

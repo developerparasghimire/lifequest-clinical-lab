@@ -41,6 +41,22 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ success: true, url: blob.url });
     }
 
+    // Without a blob token the only option left is the local filesystem, which
+    // on Vercel is read-only and wiped between invocations. Writing there would
+    // either throw or "succeed" and then 404 forever, so fail loudly instead of
+    // saving a broken image URL into the database.
+    if (process.env.VERCEL || process.env.NODE_ENV === "production") {
+      console.error("[upload] BLOB_READ_WRITE_TOKEN is not set — refusing to write to an ephemeral filesystem");
+      return NextResponse.json(
+        {
+          success: false,
+          error:
+            "Image storage is not configured. Add a Vercel Blob store to this project and set BLOB_READ_WRITE_TOKEN, then try again.",
+        },
+        { status: 503 }
+      );
+    }
+
     // Local dev fallback: write to public/uploads/.
     const bytes = await file.arrayBuffer();
     const buffer = Buffer.from(bytes);
@@ -49,7 +65,8 @@ export async function POST(req: NextRequest) {
     await writeFile(join(uploadDir, safeName), buffer);
 
     return NextResponse.json({ success: true, url: `/uploads/${safeName}` });
-  } catch {
+  } catch (e) {
+    console.error("[upload]", e);
     return NextResponse.json({ success: false, error: "Upload failed" }, { status: 500 });
   }
 }

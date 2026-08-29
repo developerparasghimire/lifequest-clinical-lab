@@ -6,6 +6,25 @@ interface RouteParams {
   params: Promise<{ id: string }>;
 }
 
+// Contact messages are private, so unlike the public-content routes this
+// GET stays behind the session check.
+export async function GET(_req: NextRequest, { params }: RouteParams) {
+  const session = await auth();
+  if (!session) {
+    return NextResponse.json({ success: false, error: "Unauthorized" }, { status: 401 });
+  }
+
+  const { id } = await params;
+  try {
+    const item = await prisma.contact.findUnique({ where: { id } });
+    if (!item) return NextResponse.json({ success: false, error: "Not found" }, { status: 404 });
+    return NextResponse.json({ success: true, data: item });
+  } catch (e) {
+    console.error("[contact GET id]", e);
+    return NextResponse.json({ success: false, error: "Failed to fetch message" }, { status: 500 });
+  }
+}
+
 export async function PATCH(_req: NextRequest, { params }: RouteParams) {
   const session = await auth();
   if (!session) {
