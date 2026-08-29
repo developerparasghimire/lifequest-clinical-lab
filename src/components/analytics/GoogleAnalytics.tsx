@@ -15,6 +15,13 @@ import Script from "next/script";
  * Written against gtag.js directly rather than pulling in
  * @next/third-parties, to avoid adding a dependency for ~15 lines.
  */
+/**
+ * Live GA4 data stream:
+ *   Stream name    lifequestclinicallab
+ *   Stream URL     https://lifequestclinicallab.com.np
+ *   Stream ID      15523845968      (Measurement Protocol only — not used by gtag.js)
+ *   Measurement ID G-PEY9BFZLNX     (this is the one the page needs)
+ */
 const DEFAULT_GA_ID = "G-PEY9BFZLNX";
 
 export default function GoogleAnalytics() {
