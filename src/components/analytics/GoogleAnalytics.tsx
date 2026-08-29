@@ -1,26 +1,25 @@
 import Script from "next/script";
 
 /**
- * Google Analytics 4.
+ * Google Analytics 4 for lifequestclinicallab.com.np.
  *
- * Renders nothing until NEXT_PUBLIC_GA_MEASUREMENT_ID is set, so local
- * development and preview deploys stay out of the production stats.
+ * A GA Measurement ID is not a secret — it ships in the page source of every
+ * site that uses GA — so the live property ID is the built-in default here.
+ * That means analytics work on deploy with no Vercel configuration needed.
+ * Set NEXT_PUBLIC_GA_MEASUREMENT_ID to point a given environment somewhere
+ * else (a staging property, say).
  *
- * To switch it on:
- *   1. analytics.google.com -> Admin -> Create property (or pick the
- *      existing one for lifequestclinicallab.com.np)
- *   2. Data streams -> Web -> add https://lifequestclinicallab.com.np
- *   3. Copy the Measurement ID (looks like G-XXXXXXXXXX)
- *   4. Vercel -> Project -> Settings -> Environment Variables:
- *      NEXT_PUBLIC_GA_MEASUREMENT_ID = G-XXXXXXXXXX
- *   5. Redeploy
+ * Only runs in production builds, so `npm run dev` never counts your own
+ * work as site traffic.
  *
  * Written against gtag.js directly rather than pulling in
  * @next/third-parties, to avoid adding a dependency for ~15 lines.
  */
+const DEFAULT_GA_ID = "G-PEY9BFZLNX";
+
 export default function GoogleAnalytics() {
-  const id = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
-  if (!id) return null;
+  const id = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || DEFAULT_GA_ID;
+  if (!id || process.env.NODE_ENV !== "production") return null;
 
   return (
     <>
