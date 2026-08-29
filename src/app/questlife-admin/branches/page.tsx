@@ -4,6 +4,7 @@ import { useCallback, useEffect, useState } from "react";
 import Image from "next/image";
 import ImageUpload from "@/components/admin/ImageUpload";
 import { adminFetch } from "@/lib/admin-fetch";
+import { parseLatLngFromMapsUrl } from "@/lib/geo";
 
 const INPUT = "w-full px-4 py-2.5 border border-slate-200 rounded-xl text-slate-900 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-100 transition";
 
@@ -17,11 +18,13 @@ interface Branch {
   mapUrl?: string | null;
   mapEmbed?: string | null;
   image?: string | null;
+  latitude?: number | null;
+  longitude?: number | null;
   order: number;
   active: boolean;
 }
 
-const empty = { name: "", address: "", phone: "", email: "", hours: "", mapUrl: "", mapEmbed: "", image: "", order: "0", active: true };
+const empty = { name: "", address: "", phone: "", email: "", hours: "", mapUrl: "", mapEmbed: "", image: "", latitude: "", longitude: "", order: "0", active: true };
 
 export default function AdminBranchesPage() {
   const [items, setItems] = useState<Branch[]>([]);
@@ -44,7 +47,12 @@ export default function AdminBranchesPage() {
   const submit = async (e: React.FormEvent) => {
     e.preventDefault();
     setSaving(true);
-    const payload = { ...form, order: Number(form.order) };
+    const payload = {
+      ...form,
+      order: Number(form.order),
+      latitude: form.latitude === "" ? null : Number(form.latitude),
+      longitude: form.longitude === "" ? null : Number(form.longitude),
+    };
     const res = editingId
       ? await adminFetch(`/api/branches/${editingId}`, { method: "PATCH", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload) })
       : await adminFetch("/api/branches",               { method: "POST",  headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload) });
@@ -56,7 +64,10 @@ export default function AdminBranchesPage() {
     setForm({
       name: b.name, address: b.address, phone: b.phone || "",
       email: b.email || "", hours: b.hours || "", mapUrl: b.mapUrl || "",
-      mapEmbed: b.mapEmbed || "", image: b.image || "", order: String(b.order), active: b.active,
+      mapEmbed: b.mapEmbed || "", image: b.image || "",
+      latitude: b.latitude == null ? "" : String(b.latitude),
+      longitude: b.longitude == null ? "" : String(b.longitude),
+      order: String(b.order), active: b.active,
     });
     setEditingId(b.id); setShowForm(true);
   };
@@ -129,13 +140,52 @@ export default function AdminBranchesPage() {
               </div>
             </div>
 
-            {/* Google Maps URL */}
+            {/* Google Maps URL — pasting one auto-fills the map pin below */}
             <div>
               <label className="block text-sm font-medium text-slate-700 mb-1">Google Maps Share URL</label>
               <input type="url" value={form.mapUrl} placeholder="https://maps.google.com/?q=..."
-                onChange={(e) => setForm((p) => ({ ...p, mapUrl: e.target.value }))}
+                onChange={(e) => {
+                  const mapUrl = e.target.value;
+                  const coords = parseLatLngFromMapsUrl(mapUrl);
+                  setForm((p) => ({
+                    ...p,
+                    mapUrl,
+                    // Only auto-fill: never overwrite coordinates already entered by hand.
+                    ...(coords && p.latitude === "" && p.longitude === ""
+                      ? { latitude: String(coords.latitude), longitude: String(coords.longitude) }
+                      : {}),
+                    // Give the embed a precise pin too, if it is still empty.
+                    ...(coords && p.mapEmbed === ""
+                      ? { mapEmbed: `https://www.google.com/maps?q=${coords.latitude},${coords.longitude}&z=17&output=embed` }
+                      : {}),
+                  }));
+                }}
                 className={INPUT} />
-              <p className="text-xs text-slate-400 mt-1">Paste the &quot;Share&quot; link from Google Maps (used for the &quot;View on Maps&quot; button).</p>
+              <p className="text-xs text-slate-400 mt-1">
+                Paste the &quot;Share&quot; link from Google Maps (used for the &quot;View on Maps&quot; button).
+                Coordinates and the embed below fill in automatically.
+              </p>
+            </div>
+
+            {/* Map pin — drives the Nepal map on the home page */}
+            <div>
+              <label className="block text-sm font-medium text-slate-700 mb-1">
+                Map Pin Coordinates <span className="text-slate-400 font-normal">(optional)</span>
+              </label>
+              <div className="grid grid-cols-2 gap-3">
+                <input
+                  type="number" step="any" value={form.latitude} placeholder="Latitude — e.g. 27.7301249"
+                  onChange={(e) => setForm((p) => ({ ...p, latitude: e.target.value }))}
+                  className={INPUT} />
+                <input
+                  type="number" step="any" value={form.longitude} placeholder="Longitude — e.g. 85.3256245"
+                  onChange={(e) => setForm((p) => ({ ...p, longitude: e.target.value }))}
+                  className={INPUT} />
+              </div>
+              <p className="text-xs text-slate-400 mt-1">
+                Places this branch as a pin on the Nepal map on the home page. Filled in automatically
+                from the share link above — leave blank to list the branch everywhere else without pinning it.
+              </p>
             </div>
 
             {/* Google Maps Embed */}

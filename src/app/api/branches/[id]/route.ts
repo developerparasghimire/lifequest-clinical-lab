@@ -33,6 +33,8 @@ export async function PATCH(req: NextRequest, { params }: RouteParams) {
         ...(b.hours !== undefined && { hours: b.hours ? String(b.hours).slice(0, 200) : null }),
         ...(b.mapUrl !== undefined && { mapUrl: b.mapUrl ? String(b.mapUrl).slice(0, 500) : null }),
         ...(b.mapEmbed !== undefined && { mapEmbed: b.mapEmbed ? String(b.mapEmbed).slice(0, 1000) : null }),
+        ...(b.latitude !== undefined && { latitude: b.latitude === null || b.latitude === "" ? null : Number(b.latitude) }),
+        ...(b.longitude !== undefined && { longitude: b.longitude === null || b.longitude === "" ? null : Number(b.longitude) }),
         ...(b.image !== undefined && { image: b.image ? String(b.image).slice(0, 500) : null }),
         ...(b.order !== undefined && { order: Number(b.order) }),
         ...(b.active !== undefined && { active: Boolean(b.active) }),

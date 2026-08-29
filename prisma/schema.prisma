@@ -146,6 +146,11 @@ model Branch {
   mapUrl    String?
   mapEmbed  String?
   image     String?
+  // Pin position on the Nepal map on the home page. Auto-filled from a
+  // pasted Google Maps URL in the admin panel; a branch without these is
+  // still listed everywhere else, just not pinned on the map.
+  latitude  Float?
+  longitude Float?
   order     Int      @default(0)
   active    Boolean  @default(true)
   createdAt DateTime @default(now())

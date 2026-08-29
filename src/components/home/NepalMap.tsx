@@ -1,5 +1,7 @@
 import Link from "next/link";
 import Reveal from "@/components/ui/Reveal";
+import { getBranches } from "@/lib/cms";
+import { projectToMap, NEPAL_PROJECTION } from "@/lib/geo";
 
 /**
  * Official Nepal outline, derived from geoBoundaries ADM0 open data
@@ -89,55 +91,54 @@ const NEPAL_PATH = `
   L 101.4 46.8 L 103.2 43.2 L 100.5 41.6 L 100.7 36.3 L 95.8 30.8 L 97.0 29.7 L 95.0 27.5
   L 95.6 25.0 L 91.5 22.6 L 86.2 23.2 L 83.0 19.1 L 73.1 16.2 L 66.4 7.7 L 53.8 0.0 Z`;
 
-const locations = [
-  {
-    n: 1,
-    city: "Kathmandu",
-    address: "Maharajgunj-03, Panipokhari",
-    district: "Kathmandu",
-    tag: "Main Branch",
-    phone: "+977-1-4002747",
-    // Verified head-office listing — opens driving directions to the lab.
-    // Coordinates below are this pin's exact location: 27.7301249, 85.3256245
-    mapUrl:
-      "https://www.google.com/maps/dir//LIFE+QUEST+CLINICAL+LAB,+Lazimpat+Sadak,+Kathmandu+44600/@27.6696826,85.3446311,15z/data=!4m8!4m7!1m0!1m5!1m1!1s0x39eb19385f76a673:0x48499bb0019851ca!2m2!1d85.3256245!2d27.7301249!5m1!1e1",
-    x: 517.2,
-    y: 306.3,
-    anchor: "middle" as const,
-    dx: 0,
-    main: true,
-  },
-  {
-    n: 2,
-    city: "Gaighat",
-    address: "Triyuga Municipality-10",
-    district: "Udayapur",
-    tag: "Branch",
-    phone: "+977-35-590621",
-    mapUrl: "https://maps.google.com/?q=Gaighat+Udayapur+Nepal",
-    x: 652.0,
-    y: 410.5,
-    anchor: "middle" as const,
-    dx: 0,
-    main: false,
-  },
-  {
-    n: 3,
-    city: "Birtamod",
-    address: "Shree Krishna Complex, Birtamod-5",
-    district: "Jhapa",
-    tag: "Branch",
-    phone: "+977-23-591222",
-    mapUrl: "https://maps.google.com/?q=Birtamod+Jhapa+Nepal",
-    x: 779.2,
-    y: 427.7,
-    anchor: "end" as const,
-    dx: 20,
-    main: false,
-  },
-];
+/**
+ * Locations come from the Branch records managed in the admin panel
+ * (Branches). A branch appears as a pin once it has coordinates, which the
+ * admin form fills in automatically from a pasted Google Maps link.
+ */
+type Pin = {
+  id: string;
+  n: number;
+  city: string;
+  address: string;
+  phone: string | null;
+  mapUrl: string | null;
+  x: number;
+  y: number;
+  anchor: "middle" | "end";
+  dx: number;
+  main: boolean;
+};
 
-export default function NepalMap() {
+export default async function NepalMap() {
+  const branches = await getBranches();
+
+  const locations: Pin[] = branches
+    .filter((b) => b.latitude != null && b.longitude != null)
+    .map((b, i) => {
+      const { x, y } = projectToMap(b.latitude as number, b.longitude as number);
+      // Labels near the right edge would overflow the viewBox, so anchor
+      // those to their end instead of their centre.
+      const nearRightEdge = x > NEPAL_PROJECTION.width - 90;
+      return {
+        id: b.id,
+        n: i + 1,
+        // "Life Quest Clinical Lab, Birtamod" -> "Birtamod"
+        city: b.name.split(",").pop()!.trim().replace(/^Life Quest\s*/i, "").replace(/\s*Branch$/i, "").trim() || b.name,
+        address: b.address,
+        phone: b.phone,
+        mapUrl: b.mapUrl,
+        x,
+        y,
+        anchor: nearRightEdge ? ("end" as const) : ("middle" as const),
+        dx: nearRightEdge ? 22 : 0,
+        main: i === 0,
+      };
+    });
+
+  // Nothing to pin yet — the section would be an empty map.
+  if (locations.length === 0) return null;
+
   return (
     <section className="py-20 overflow-hidden bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -204,7 +205,7 @@ export default function NepalMap() {
                 {locations.map((loc) => {
                   const color = loc.main ? "#040B2F" : "#00B67A";
                   return (
-                    <g key={loc.city}>
+                    <g key={loc.id}>
                       {/* Pulsing halo */}
                       <circle cx={loc.x} cy={loc.y} r="6" fill={color} opacity="0.35">
                         <animate
@@ -281,8 +282,8 @@ export default function NepalMap() {
             <div className="space-y-4">
               {locations.map((loc) => (
                 <a
-                  key={loc.city}
-                  href={loc.mapUrl}
+                  key={loc.id}
+                  href={loc.mapUrl ?? undefined}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="block rounded-2xl p-6 bg-white transition-all hover:shadow-lg"
@@ -312,7 +313,7 @@ export default function NepalMap() {
                             color: loc.main ? "#ffffff" : "#00B67A",
                           }}
                         >
-                          {loc.tag}
+                          {loc.main ? "Main Branch" : "Branch"}
                         </span>
                       </div>
                       <p className="text-sm font-semibold mb-1" style={{ color: "#00B67A" }}>
@@ -320,12 +321,12 @@ export default function NepalMap() {
                       </p>
                       <p className="text-sm leading-relaxed" style={{ color: "#5D6478" }}>
                         {loc.address}
-                        <br />
-                        {loc.district}
                       </p>
-                      <p className="text-sm mt-2 font-medium" style={{ color: "#040B2F" }}>
-                        {loc.phone}
-                      </p>
+                      {loc.phone && (
+                        <p className="text-sm mt-2 font-medium" style={{ color: "#040B2F" }}>
+                          {loc.phone}
+                        </p>
+                      )}
                     </div>
                   </div>
                 </a>
