@@ -29,6 +29,7 @@ export default async function Footer() {
   const tagline   = settings["footer.tagline"] || "Precision diagnostics across Nepal — accurate results, every time.";
   const copyright = settings["footer.copyright"] || `© ${new Date().getFullYear()} ${siteName}. All rights reserved.`;
   const email     = settings["contact.email"]  || "";
+  const mobile    = settings["contact.mobile"] || "";
   const hours     = settings["contact.hours"]  || "";
   const fb        = settings["social.facebook"];
   const ig        = settings["social.instagram"];
@@ -129,6 +130,20 @@ export default async function Footer() {
                   +977-1-4002747
                 </a>
               </li>
+              {mobile && (
+                <li className="flex gap-3 items-start">
+                  <span className="mt-0.5 shrink-0" style={{ color: "#00B67A" }}>
+                    {/* smartphone — distinct from the landline handset above */}
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <rect x="5" y="2" width="14" height="20" rx="2" ry="2" />
+                      <line x1="12" y1="18" x2="12.01" y2="18" />
+                    </svg>
+                  </span>
+                  <a href={`tel:${mobile.replace(/[^+\d]/g, "")}`} className="text-sm hover:text-[#00B67A] transition-colors" style={{ color: "rgba(255,255,255,0.5)" }}>
+                    {mobile}
+                  </a>
+                </li>
+              )}
               {hours && (
                 <li className="flex gap-3 items-start">
                   <span className="mt-0.5 shrink-0" style={{ color: "#00B67A" }}>

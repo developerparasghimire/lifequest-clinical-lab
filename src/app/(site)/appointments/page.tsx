@@ -183,15 +183,17 @@ function AppointmentsInner() {
                 {
                   icon: "📞",
                   title: "Need Help?",
-                  body: "Our team is available Sun–Fri 7:00–19:00 and Sat 8:00–16:00.",
-                  cta: { label: "Call +977-1-4002747", href: "tel:+97714002747" },
+                  body: "Call us and our team will help you book the right test.",
+                  phones: [
+                    { label: "01-4002747", href: "tel:+97714002747" },
+                    { label: "9802302472", href: "tel:+9779802302472" },
+                  ],
                 },
                 {
                   icon: "📋",
                   title: "Before Your Test",
                   items: [
-                    "Fast 8–12 hours for fasting tests",
-                    "Bring a valid photo ID",
+                    "For tests that require fasting, kindly maintain 8 to 12 hours of fasting before the test",
                     "Arrive 10 minutes early",
                     "Bring previous reports if available",
                   ],
@@ -201,7 +203,7 @@ function AppointmentsInner() {
                   title: "Lab Hours",
                   hours: [
                     { day: "Sunday – Friday", time: "7:00 – 19:00" },
-                    { day: "Saturday",        time: "8:00 – 16:00" },
+                    { day: "Saturday",        time: "7:00 – 16:00" },
                   ],
                 },
               ].map((card) => (
@@ -211,14 +213,22 @@ function AppointmentsInner() {
                   </div>
                   <h3 className="text-lg font-bold mb-3" style={{ color: "#040B2F" }}>{card.title}</h3>
                   {card.body && <p className="text-sm leading-relaxed" style={{ color: "#40474F" }}>{card.body}</p>}
-                  {card.cta && (
-                    <a
-                      href={card.cta.href}
-                      className="lab-btn btn-pop mt-4 inline-flex items-center gap-2"
-                      style={{ fontSize: "13px", padding: "10px 18px" }}
-                    >
-                      {card.cta.label}
-                    </a>
+                  {card.phones && (
+                    <div className="flex flex-wrap gap-2 mt-4">
+                      {card.phones.map((p) => (
+                        <a
+                          key={p.href}
+                          href={p.href}
+                          className="lab-btn btn-pop inline-flex items-center gap-2"
+                          style={{ fontSize: "13px", padding: "10px 18px" }}
+                        >
+                          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 3.07 9.81 19.79 19.79 0 0 1 .01 1.18 2 2 0 0 1 2 0h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L6.09 7.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z" />
+                          </svg>
+                          {p.label}
+                        </a>
+                      ))}
+                    </div>
                   )}
                   {card.items && (
                     <ul className="space-y-2">

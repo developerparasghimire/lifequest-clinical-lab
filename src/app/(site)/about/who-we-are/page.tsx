@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Who We Are · Life Quest Clinical Lab",
     description:
-      "Nepal's first lab to offer complete Molecular Pathology Services and host the IFCC Professional Exchange Program.",
+      "Comprehensive laboratory diagnostic services under one roof, and the only lab in Nepal to host the IFCC Professional Exchange Program.",
     url: "/about/who-we-are",
     type: "website",
   },
@@ -216,7 +216,7 @@ export default async function WhoWeArePage() {
                 Built on Science, Driven by Quality
               </h2>
               <p className="text-base leading-relaxed mb-6" style={{ color: "#5D6478" }}>
-                Established in 2021, Life Quest Clinical Lab is an NPHL accredited independent laboratory at Maharajgunj-03, Panipokhari, Kathmandu. We offer complete Molecular Pathology Services — including NGS, FISH, and immunohistochemistry — under one roof.
+                Established in 2021, Life Quest Clinical Lab is an NPHL accredited independent laboratory at Maharajgunj-03, Panipokhari, Kathmandu. We offer comprehensive laboratory diagnostic services under one roof.
               </p>
               <p className="text-base leading-relaxed mb-10" style={{ color: "#5D6478" }}>
                 Quality management follows the PDCA cycle, ensuring every result meets global benchmarks through
@@ -525,14 +525,11 @@ export default async function WhoWeArePage() {
               <span style={{ color: "#00B67A" }}>Quality Diagnostics?</span>
             </h2>
             <p className="text-base mb-8" style={{ color: "#5D6478" }}>
-              Book a test today or explore our team behind every accurate report.
+              Book your test today and get accurate, reliable results from our accredited laboratory.
             </p>
             <div className="flex flex-wrap gap-4 justify-center">
               <Link href="/appointments" className="lab-btn btn-pop">
                 Book a Test
-              </Link>
-              <Link href="/about/ifcc-pep" className="lab-btn-outline">
-                IFCC
               </Link>
             </div>
           </Reveal>
