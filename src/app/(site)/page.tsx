@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import Hero from "@/components/home/Hero";
 import HomeCollection from "@/components/home/HomeCollection";
 import WhyUs from "@/components/home/WhyUs";
-import StatsStrip from "@/components/home/StatsStrip";
 import NepalMap from "@/components/home/NepalMap";
 import BlogSection from "@/components/home/BlogSection";
 import FAQ from "@/components/ui/FAQ";
@@ -33,16 +32,13 @@ export default function HomePage() {
       {/* 3. About */}
       <WhyUs />
 
-      {/* 4. Stats strip */}
-      <StatsStrip />
-
-      {/* 5. Nepal map — branch locations */}
+      {/* 4. Nepal map — branch locations */}
       <NepalMap />
 
-      {/* 6. Blog — Latest Articles */}
+      {/* 5. Blog — Latest Articles */}
       <BlogSection />
 
-      {/* 7. FAQ */}
+      {/* 6. FAQ */}
       <FAQ />
     </>
   );

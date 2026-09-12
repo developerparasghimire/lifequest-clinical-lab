@@ -119,7 +119,10 @@ export default async function ContactPage() {
                     <h3 className="text-base font-bold mb-2" style={{ color: "#040B2F" }}>{b.name}</h3>
                     <p className="text-sm mb-3" style={{ color: "#5D6478" }}>{b.address}</p>
                     {b.phone && (
-                      <a href={`tel:${b.phone.split(/[\/·]/)[0].trim()}`} className="text-sm font-semibold mb-3" style={{ color: "#00B67A" }}>{b.phone}</a>
+                      <a href={`tel:${b.phone.split(/[\/·]/)[0].trim()}`} className="text-sm font-semibold mb-1" style={{ color: "#00B67A" }}>{b.phone}</a>
+                    )}
+                    {b.email && (
+                      <a href={`mailto:${b.email}`} className="text-sm mb-3 break-all hover:underline" style={{ color: "#5D6478" }}>{b.email}</a>
                     )}
                     {b.mapUrl && (
                       <a href={b.mapUrl} target="_blank" rel="noreferrer" className="lab-btn mt-auto self-start inline-flex items-center gap-2" style={{ fontSize: "12px", padding: "8px 16px" }}>
