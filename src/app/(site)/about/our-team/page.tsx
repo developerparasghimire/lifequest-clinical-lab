@@ -244,7 +244,7 @@ export default async function OurTeamPage() {
             {[
               { value: "4+", label: "Years of Experience" },
               { value: "3", label: "Lab Branches" },
-              { value: "NPHL", label: "Category A Accredited" },
+              { value: "NPHL", label: "Accredited Lab" },
               { value: "IFCC", label: "PEP Host Lab" },
             ].map((s) => (
               <RevealItem key={s.label}>

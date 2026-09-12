@@ -7,7 +7,7 @@ import Reveal, { RevealItem } from "@/components/ui/Reveal";
 export const metadata: Metadata = {
   title: "Who We Are",
   description:
-    "Life Quest Clinical Lab — Nepal's NPHL accredited Category A clinical laboratory. Learn about our capabilities, PDCA quality management, IFCC PEP recognition, mission and vision.",
+    "Life Quest Clinical Lab — Nepal's NPHL accredited clinical laboratory. Learn about our capabilities, PDCA quality management, IFCC PEP recognition, mission and vision.",
   alternates: { canonical: "/about/who-we-are" },
   openGraph: {
     title: "Who We Are · Life Quest Clinical Lab",

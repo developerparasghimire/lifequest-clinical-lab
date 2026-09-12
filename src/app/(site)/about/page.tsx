@@ -8,12 +8,12 @@ import Reveal, { RevealItem } from "@/components/ui/Reveal";
 export const metadata: Metadata = {
   title: "About Us",
   description:
-    "Life Quest Clinical Lab — a Nepal-based NPHL accredited Category A medical laboratory committed to accurate, accessible diagnostics. Learn about our mission, team and three branches in Kathmandu, Birtamod and Gaighat.",
+    "Life Quest Clinical Lab — a Nepal-based NPHL accredited medical laboratory committed to accurate, accessible diagnostics. Learn about our mission, team and three branches in Kathmandu, Birtamod and Gaighat.",
   alternates: { canonical: "/about" },
   openGraph: {
     title: "About Life Quest Clinical Lab",
     description:
-      "Nepal's NPHL accredited Category A medical laboratory committed to accurate, accessible diagnostics across three branches.",
+      "Nepal's NPHL accredited medical laboratory committed to accurate, accessible diagnostics across three branches.",
     url: "/about",
     type: "website",
   },
@@ -46,7 +46,7 @@ export default async function AboutPage() {
               Committed to Quality Diagnostics Since 2021
             </h1>
             <p className="text-base leading-relaxed mb-8" style={{ color: "rgba(255,255,255,0.78)" }}>
-              Life Quest is a NPHL accredited, Category&nbsp;&apos;A&apos; clinical laboratory in Nepal. We are the{" "}
+              Life Quest is a NPHL accredited clinical laboratory in Nepal. We are the{" "}
               <strong style={{ color: "#fff" }}>first lab in Nepal</strong> to provide Molecular Pathology
               Services under one roof — and the only lab to host the IFCC Professional Exchange Program.
             </p>
