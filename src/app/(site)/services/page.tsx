@@ -17,7 +17,7 @@ export const metadata: Metadata = {
 };
 
 /**
- * The eight laboratory departments — single source of truth. Both the hero
+ * The laboratory departments — single source of truth. Both the hero
  * chips and the "What We Do" cards below read from this list, so the two
  * can never drift apart.
  */
@@ -99,18 +99,6 @@ const DEPARTMENTS = [
     icon: (
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
         <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
-      </svg>
-    ),
-  },
-  {
-    name: "Next Generation Sequencing",
-    short: "Next Gen Sequencing",
-    color: "#818CF8",
-    desc: "High-throughput sequencing that reads many genes at once, supporting comprehensive cancer panels, inherited disease testing and carrier screening from a single sample.",
-    icon: (
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M18 10h-4V6"/><path d="M6 14h4v4"/><path d="M3 3l7 7"/>
-        <path d="M21 21l-7-7"/><path d="M21 3l-7 7"/><path d="M3 21l7-7"/>
       </svg>
     ),
   },
@@ -237,7 +225,7 @@ export default async function ServicesHubPage() {
 
               <p className="mb-10 leading-relaxed"
                 style={{ color: "rgba(255,255,255,0.58)", fontSize: "17px", maxWidth: "460px" }}>
-                Eight specialized departments, 526+ tests, and rapid accurate results — delivered by NPHL-accredited pathologists across three branches in Nepal.
+                Specialized departments, 526+ tests, and rapid accurate results — delivered by NPHL-accredited pathologists across three branches in Nepal.
               </p>
 
               <div className="flex flex-wrap gap-4">
@@ -314,8 +302,8 @@ export default async function ServicesHubPage() {
               Our Diagnostic Services
             </h2>
             <p className="text-base leading-relaxed" style={{ color: "#5D6478" }}>
-              Life Quest runs eight specialised departments under one roof, from routine blood
-              chemistry to next generation sequencing — so most investigations your doctor orders
+              Life Quest runs specialised departments under one roof, from routine blood
+              chemistry to molecular diagnostics — so most investigations your doctor orders
               can be completed in a single laboratory, by one team, to one standard.
             </p>
           </Reveal>

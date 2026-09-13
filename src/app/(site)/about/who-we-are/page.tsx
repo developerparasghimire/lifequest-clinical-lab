@@ -29,7 +29,6 @@ const capabilities = [
   "Cytopathology",
   "Molecular Diagnostics",
   "Immunofluorescence",
-  "Next Generation Sequencing",
 ];
 
 const whyChooseUs = [
