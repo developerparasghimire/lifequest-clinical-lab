@@ -3,6 +3,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { getSettings } from "@/lib/cms";
 import Reveal, { RevealItem } from "@/components/ui/Reveal";
+import PDCACycle from "@/components/about/PDCACycle";
+import LeaderMessages from "@/components/about/LeaderMessages";
 
 export const metadata: Metadata = {
   title: "Who We Are",
@@ -27,72 +29,6 @@ const capabilities = [
   "Molecular Diagnostics",
   "Immunofluorescence",
   "Next Generation Sequencing",
-];
-
-const pdcaPhases = [
-  {
-    phase: "Plan",
-    color: "#00B67A",
-    bg: "#DCFCE7",
-    icon: (
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/>
-      </svg>
-    ),
-    points: [
-      "Strategy Development",
-      "Quality Indicators establishment",
-      "Establishment of performance benchmark",
-      "Align objectives with regulatory and accreditation benchmarks",
-    ],
-  },
-  {
-    phase: "Do",
-    color: "#22C55E",
-    bg: "#EDFBF3",
-    icon: (
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-        <polyline points="20 6 9 17 4 12"/>
-      </svg>
-    ),
-    points: [
-      "Staff training and competency assessment",
-      "Execution of internal quality control",
-      "Execution of external quality assurance",
-      "Implementation of pre-analytical, analytical and post-analytical quality checks",
-    ],
-  },
-  {
-    phase: "Check",
-    color: "#F59E0B",
-    bg: "#FFFBEB",
-    icon: (
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-        <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
-      </svg>
-    ),
-    points: [
-      "Review of proficiency testing scores and quality control data",
-      "Performance evaluation of quality indicators",
-      "Benchmarking against global standards",
-      "Data-driven decision making",
-    ],
-  },
-  {
-    phase: "Act",
-    color: "#EF4444",
-    bg: "#FEF2F2",
-    icon: (
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-        <polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/>
-      </svg>
-    ),
-    points: [
-      "Implementation of Corrective & Preventive Actions",
-      "Standardization of Successful Improvements",
-      "Establishment of preventive measures",
-    ],
-  },
 ];
 
 const whyChooseUs = [
@@ -284,56 +220,15 @@ export default async function WhoWeArePage() {
           <Reveal className="mb-12">
             <p className="text-xs font-bold uppercase tracking-widest mb-3" style={{ color: "#00B67A" }}>Quality Management</p>
             <h2 className="text-3xl sm:text-4xl font-bold h-display" style={{ color: "#040B2F" }}>
-              Our PDCA Quality Policy
+              Our Quality Management Policy
             </h2>
             <p className="text-base mt-3 max-w-2xl" style={{ color: "#5D6478" }}>
               We adhere to the Plan-Do-Check-Act (PDCA) cycle in our quality management processes to ensure reliable results. This iterative method allows us to plan and implement changes, monitor outcomes, and make necessary adjustments for continuous improvement.
             </p>
           </Reveal>
 
-          <Reveal stagger staggerGap={0.1} className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-            {pdcaPhases.map((p) => (
-              <RevealItem key={p.phase}>
-                <div
-                  className="rounded-2xl p-8 h-full bg-white"
-                  style={{ border: "1px solid #E2E6F0" }}
-                >
-                  <div className="flex items-center gap-4 mb-6">
-                    <div
-                      className="w-12 h-12 rounded-xl flex items-center justify-center shrink-0"
-                      style={{ background: p.color }}
-                    >
-                      {p.icon}
-                    </div>
-                    <div>
-                      <p className="text-xs font-bold uppercase tracking-widest mb-0.5" style={{ color: p.color }}>
-                        PDCA
-                      </p>
-                      <h3 className="text-xl font-black" style={{ color: "#040B2F" }}>
-                        {p.phase}
-                      </h3>
-                    </div>
-                  </div>
-                  <div className="space-y-3">
-                    {p.points.map((pt) => (
-                      <div key={pt} className="flex items-start gap-3">
-                        <div
-                          className="w-5 h-5 rounded-full flex items-center justify-center shrink-0 mt-0.5"
-                          style={{ background: p.bg }}
-                        >
-                          <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke={p.color} strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round">
-                            <polyline points="20 6 9 17 4 12" />
-                          </svg>
-                        </div>
-                        <span className="text-sm leading-relaxed" style={{ color: "#5D6478" }}>
-                          {pt}
-                        </span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </RevealItem>
-            ))}
+          <Reveal>
+            <PDCACycle />
           </Reveal>
         </div>
       </section>
@@ -467,6 +362,8 @@ export default async function WhoWeArePage() {
               </div>
             </Reveal>
           </div>
+
+          <LeaderMessages />
         </div>
       </section>
 
