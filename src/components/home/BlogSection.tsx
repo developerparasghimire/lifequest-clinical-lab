@@ -12,7 +12,7 @@ const SELECT = {
   image: true,
 } as const;
 
-export default async function BlogSection() {
+async function loadPosts() {
   // Posts the admin ticked "Show on Home" for, newest first.
   const featured = await prisma.blog.findMany({
     where: { published: true, latest: true },
@@ -23,21 +23,24 @@ export default async function BlogSection() {
 
   // Back-fill with the newest published posts so the row always shows
   // three, even when fewer than three are ticked in the admin panel.
-  const posts =
-    featured.length >= 3
-      ? featured
-      : [
-          ...featured,
-          ...(await prisma.blog.findMany({
-            where: {
-              published: true,
-              id: { notIn: featured.map((p) => p.id) },
-            },
-            orderBy: { createdAt: "desc" },
-            take: 3 - featured.length,
-            select: SELECT,
-          })),
-        ];
+  if (featured.length >= 3) return featured;
+  const rest = await prisma.blog.findMany({
+    where: { published: true, id: { notIn: featured.map((p) => p.id) } },
+    orderBy: { createdAt: "desc" },
+    take: 3 - featured.length,
+    select: SELECT,
+  });
+  return [...featured, ...rest];
+}
+
+export default async function BlogSection() {
+  let posts: Awaited<ReturnType<typeof loadPosts>> = [];
+  try {
+    posts = await loadPosts();
+  } catch (e) {
+    // A database blip should hide this one section, not fail the home page.
+    console.error("[BlogSection] posts unavailable:", (e as Error).message?.split("\n").pop());
+  }
 
   if (posts.length === 0) return null;
 

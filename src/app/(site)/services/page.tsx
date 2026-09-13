@@ -172,11 +172,18 @@ const Check = () => (
 );
 
 export default async function ServicesHubPage() {
-  const featuredPackages = await prisma.package.findMany({
-    where: { active: true, featured: true },
-    orderBy: { order: "asc" },
-    take: 3,
-  });
+  // The rest of this page is static; if the database is briefly unreachable,
+  // drop the featured-packages section instead of failing the whole page.
+  const featuredPackages = await prisma.package
+    .findMany({
+      where: { active: true, featured: true },
+      orderBy: { order: "asc" },
+      take: 3,
+    })
+    .catch((e: Error) => {
+      console.error("[services] featured packages unavailable:", e.message?.split("\n").pop());
+      return [];
+    });
 
   return (
     <>
