@@ -22,7 +22,8 @@ export const metadata: Metadata = {
 };
 
 const capabilities = [
-  "Biochemistry & Immunology",
+  "Biochemistry",
+  "Immunology",
   "Hematology",
   "Microbiology",
   "Histopathology",

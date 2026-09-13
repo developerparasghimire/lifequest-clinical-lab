@@ -23,14 +23,25 @@ export const metadata: Metadata = {
  */
 const DEPARTMENTS = [
   {
-    name: "Biochemistry & Immunology",
-    short: "Biochemistry & Immunology",
+    name: "Biochemistry",
+    short: "Biochemistry",
     color: "#60A5FA",
-    desc: "Blood chemistry that shows how your organs are working — liver and kidney panels, glucose, lipids, electrolytes and enzymes — together with immunological markers used to investigate autoimmune and inflammatory conditions.",
+    desc: "Blood chemistry that shows how your organs are working — liver and kidney function, blood glucose, lipids, electrolytes and enzymes — for routine check-ups and ongoing monitoring.",
     icon: (
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
         <path d="M10 2v7.527a2 2 0 0 1-.211.896L4.72 19.1a1 1 0 0 0 .9 1.9h12.76a1 1 0 0 0 .9-1.9l-5.069-8.677A2 2 0 0 1 14 9.527V2"/>
         <path d="M8.5 2h7"/><path d="M7 16h10"/>
+      </svg>
+    ),
+  },
+  {
+    name: "Immunology",
+    short: "Immunology",
+    color: "#FB923C",
+    desc: "Tests of the immune system — autoantibody panels, allergy testing and inflammatory markers used to investigate autoimmune, allergic and inflammatory conditions.",
+    icon: (
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/>
       </svg>
     ),
   },
