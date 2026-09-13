@@ -5,6 +5,7 @@ import { getSettings } from "@/lib/cms";
 import Reveal, { RevealItem } from "@/components/ui/Reveal";
 import PDCACycle from "@/components/about/PDCACycle";
 import LeaderMessages from "@/components/about/LeaderMessages";
+import DirectorMessage from "@/components/about/DirectorMessage";
 
 export const metadata: Metadata = {
   title: "Who We Are",
@@ -319,49 +320,7 @@ export default async function WhoWeArePage() {
       {/* ── MESSAGE FROM DIRECTOR ── */}
       <section className="py-16 overflow-hidden" style={{ background: "#F0FDF9" }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <Reveal className="mb-12">
-            <p className="text-xs font-bold uppercase tracking-widest mb-3" style={{ color: "#00B67A" }}>Leadership</p>
-            <h2 className="text-3xl sm:text-4xl font-bold h-display" style={{ color: "#040B2F" }}>
-              Message from the Director
-            </h2>
-          </Reveal>
-          <div className="grid grid-cols-1 lg:grid-cols-[280px_1fr] gap-10 items-start">
-            <Reveal direction="right">
-              <div className="rounded-3xl overflow-hidden bg-white text-center" style={{ border: "1px solid #E2E6F0" }}>
-                <div className="relative w-full" style={{ height: "280px" }}>
-                  <Image
-                    src="/team/rakesh-pokhrel.jpg"
-                    alt="Rakesh Pokhrel, Managing Director"
-                    fill
-                    sizes="280px"
-                    className="object-cover object-top"
-                  />
-                </div>
-                <div className="p-7">
-                  <h3 className="text-lg font-bold mb-1" style={{ color: "#040B2F" }}>Rakesh Pokhrel</h3>
-                  <p className="text-sm font-semibold mb-3" style={{ color: "#00B67A" }}>Managing Director / Founder</p>
-                  <div className="space-y-1 text-xs" style={{ color: "#5D6478" }}>
-                    <p>MSc. Clinical Biochemistry, IOM</p>
-                    <p>MSc. Total Quality Management</p>
-                  </div>
-                </div>
-              </div>
-            </Reveal>
-            <Reveal direction="left" delay={0.1}>
-              <div className="rounded-3xl p-10 h-full" style={{ background: "white", border: "1px solid #E2E6F0" }}>
-                <svg width="40" height="28" viewBox="0 0 32 22" fill="none" className="mb-6">
-                  <path d="M0 22V13.4C0 9.4 0.733 6.267 2.2 4 3.667 1.733 5.933 0.333 9 0L10.2 2.2C8.2 2.867 6.667 3.933 5.6 5.4 4.533 6.867 4 8.533 4 10.4H9V22H0ZM18.4 22V13.4C18.4 9.4 19.133 6.267 20.6 4 22.067 1.733 24.333 0.333 27.4 0L28.6 2.2C26.6 2.867 25.067 3.933 24 5.4 22.933 6.867 22.4 8.533 22.4 10.4H27.4V22H18.4Z" fill="#00B67A" opacity="0.25" />
-                </svg>
-                <div className="space-y-4 text-base leading-relaxed" style={{ color: "#5D6478" }}>
-                  <p>At Life Quest Clinical Lab, our mission is to empower better healthcare through precision, reliability, and affordability. We understand the vital role that accurate diagnostic results play in shaping medical decisions and improving patient outcomes.</p>
-                  <p>Our commitment to excellence is unwavering. We are dedicated to providing the highest standards of accuracy, reliability, and precision in every diagnostic service we offer. From advanced technology to a team of highly skilled professionals, we leave no stone unturned in ensuring that every result meets the strictest quality benchmarks.</p>
-                  <p>Quality is not just a goal; it&apos;s our promise. We continuously invest in cutting-edge equipment, rigorous training, and robust quality control processes to ensure that our services are at the forefront of diagnostic innovation. Our mission is to empower healthcare providers and patients with the confidence they need to make informed decisions.</p>
-                  <p>Our commitment to continuous improvement, ethical practices, and exceptional customer service sets us apart in delivering the highest quality of care.</p>
-                  <p className="font-semibold" style={{ color: "#040B2F" }}>Thank you for placing your trust in us. Together, we strive for a dependable diagnosis.</p>
-                </div>
-              </div>
-            </Reveal>
-          </div>
+          <DirectorMessage />
 
           <LeaderMessages />
         </div>
