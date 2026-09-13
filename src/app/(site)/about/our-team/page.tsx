@@ -46,64 +46,6 @@ export default async function OurTeamPage() {
         </div>
       </section>
 
-      {/* ── MESSAGE FROM DIRECTOR ── */}
-      <section className="py-16 bg-white overflow-hidden">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <Reveal>
-            <div
-              className="rounded-3xl overflow-hidden grid grid-cols-1 lg:grid-cols-[1fr_1.6fr]"
-              style={{ border: "1px solid #E2E6F0" }}
-            >
-              {/* Left — avatar panel */}
-              <div
-                className="flex flex-col items-center justify-center p-12 text-center"
-                style={{ background: "#F0FDF9" }}
-              >
-                <div className="w-28 h-28 rounded-full overflow-hidden mb-5 shrink-0" style={{ border: "3px solid #00B67A" }}>
-                  <Image
-                    src="/team/rakesh-pokhrel.jpg"
-                    alt="Rakesh Pokhrel — Managing Director & Founder"
-                    width={112}
-                    height={112}
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-                <h3 className="text-xl font-bold" style={{ color: "#040B2F" }}>
-                  Rakesh Pokhrel
-                </h3>
-                <p className="text-sm font-semibold mt-1" style={{ color: "#00B67A" }}>
-                  Managing Director &amp; Founder
-                </p>
-                <p className="text-xs mt-2" style={{ color: "#5D6478" }}>
-                  MSc. Clinical Biochemistry, IOM
-                </p>
-                <p className="text-xs" style={{ color: "#5D6478" }}>
-                  MSc. Total Quality Management
-                </p>
-              </div>
-
-              {/* Right — message */}
-              <div className="p-10 lg:p-14 bg-white">
-                <p className="text-xs font-bold uppercase tracking-widest mb-5" style={{ color: "#00B67A" }}>Message from the Director</p>
-                <svg width="36" height="26" viewBox="0 0 36 26" fill="none" className="mb-5">
-                  <path d="M0 26V15.8C0 11.1 0.833 7.4 2.5 4.7 4.167 2 6.733 0.4 10.2 0L11.6 2.6C9.4 3.3 7.667 4.6 6.4 6.4 5.133 8.2 4.5 10.2 4.5 12.4H10.5V26H0ZM21 26V15.8C21 11.1 21.833 7.4 23.5 4.7 25.167 2 27.733 0.4 31.2 0L32.6 2.6C30.4 3.3 28.667 4.6 27.4 6.4 26.133 8.2 25.5 10.2 25.5 12.4H31.5V26H21Z" fill="#00B67A" opacity="0.2"/>
-                </svg>
-                <div className="space-y-4 text-base leading-relaxed" style={{ color: "#5D6478" }}>
-                  <p>
-                    At Life Quest, our mission is to empower better healthcare through precision, reliability,
-                    and affordability. Accurate diagnostics play a vital role in every medical decision.
-                  </p>
-                  <p style={{ color: "#040B2F", fontWeight: 500 }}>
-                    Quality is not a goal; it&apos;s our promise. We invest in cutting-edge equipment, rigorous
-                    training, and robust quality controls to stay at the forefront of diagnostic medicine.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </Reveal>
-        </div>
-      </section>
-
       {/* ── FULL TEAM GROUP PHOTO ── */}
       <section className="py-16 overflow-hidden" style={{ background: "#F0FDF9" }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
